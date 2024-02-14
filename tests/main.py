@@ -12,7 +12,7 @@ def get_processes():
         with proc.oneshot():
             pid = proc.pid
             name = proc.name()
-            cpu_percent = proc.cpu_percent()
+            cpu_percent = proc.cpu_percent(interval=0.001)
             memory_percent = proc.memory_percent()
             processes.append((pid, name, cpu_percent, memory_percent))
 
