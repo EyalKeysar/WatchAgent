@@ -1,109 +1,105 @@
-# Import the required libraries
-import psutil
+import sys
+import os
 import time
-from subprocess import call
-from prettytable import PrettyTable
+import psutil
+import customtkinter as ctk
+from tkinter import ttk
 
-# Run an infinite loop to constantly monitor the system
-while True:
-
-    # Clear the screen using a bash command
-    #call('cls')
-
-    print("==============================Process Monitor\
-    ======================================")
-
-    # Fetch the battery information
-    #battery = psutil.sensors_battery()
-    ##if battery:
-    #    print("----Battery Available: %d " % (battery.percent,) + "%")
-
-    # We have used PrettyTable to print the data on console.
-    # t = PrettyTable(<list of headings>)
-    # t.add_row(<list of cells in row>)
-
-    # Fetch the Network information
-    print("----Networks----")
-    table = PrettyTable(['Network', 'Status', 'Speed'])
-    for key in psutil.net_if_stats().keys():
-        name = key
-        up = "Up" if psutil.net_if_stats()[key].isup else "Down"
-        speed = psutil.net_if_stats()[key].speed
-        table.add_row([name, up, speed])
-    print(table)
-
-    # Fetch the memory information
-    print("----Memory----")
-    memory_table = PrettyTable(["Total(GB)", "Used(GB)",
-                                "Available(GB)", "Percentage"])
-    vm = psutil.virtual_memory()
-    memory_table.add_row([
-        f'{vm.total / 1e9:.3f}',
-        f'{vm.used / 1e9:.3f}',
-        f'{vm.available / 1e9:.3f}',
-        0.3
-        #vm.percent
-    ])
-    print(memory_table)
-
-    # Fetch the 10 processes from available processes that has the highest cpu usage
-    print("----Processes----")
-    process_table = PrettyTable(['PID', 'PNAME', 'STATUS',
-                                'CPU', 'NUM THREADS', 'MEMORY(MB)'])
-
-    # procs = {
-    #         #<parent pid>: [children]
-    # }
-
-
-    procs = {}
-
-
-
-
+def get_processes():
+    # Fetch process data
     proc = []
-    # get the pids from last which mostly are user processes
-    for pid in psutil.pids()[-200:]:
+    for pid in psutil.pids():
         try:
             p = psutil.Process(pid)
-            procs[p.parent()] = procs.get(p.parent(), []).append(procs)
-            # trigger cpu_percent() the first time which leads to return of 0.0
-            p.cpu_percent()
+            p.cpu_percent()  # Trigger cpu_percent() for measurement
             proc.append(p)
-
         except Exception as e:
             pass
 
-    # sort by cpu_percent
+    # Sort processes by CPU percentage
     top = {}
     time.sleep(0.1)
     for p in proc:
-        # trigger cpu_percent() the second time for measurement
         top[p] = p.cpu_percent() / psutil.cpu_count()
 
     top_list = sorted(top.items(), key=lambda x: x[1])
-    top10 = top_list[-10:]
-    top10.reverse()
+    top_list.reverse()
 
-    for p, cpu_percent in top10:
+    return top_list
 
-        # While fetching the processes, some of the subprocesses may exit
-        # Hence we need to put this code in try-except block
+def show_processes():
+    # create a CTk window to display processes
+    root = ctk.CTk()
+    root.title("CPU Consuming Processes")
+    root.geometry("800x600")
+
+    # create a treeview with a vertical scrollbar
+    tree = ttk.Treeview(root, style="Custom.Treeview", yscrollcommand=lambda *args: root.yview(*args))
+    tree["columns"] = ("PID", "Name", "Status", "CPU %", "Num Threads", "Memory (MB)")
+    tree.heading("#0", text="", anchor=ctk.W)
+    tree.heading("PID", text="PID", anchor=ctk.W, command=lambda: sort_treeview("PID"))
+    tree.heading("Name", text="Name", anchor=ctk.W, command=lambda: sort_treeview("Name"))
+    tree.heading("Status", text="Status", anchor=ctk.W, command=lambda: sort_treeview("Status"))
+    tree.heading("CPU %", text="CPU %", anchor=ctk.W, command=lambda: sort_treeview("CPU %"))
+    tree.heading("Num Threads", text="Num Threads", anchor=ctk.W, command=lambda: sort_treeview("Num Threads"))
+    tree.heading("Memory (MB)", text="Memory (MB)", anchor=ctk.W, command=lambda: sort_treeview("Memory (MB)"))
+
+    style = ttk.Style()
+    style.theme_use("clam")
+
+    style.configure("Custom.Treeview", highlightthickness=0, bd=0, font=('Arial', 10))
+    style.configure("Custom.Treeview.Heading", font=('Arial', 10, 'bold'))
+
+    def sort_treeview(column):
+        # Toggle sorting direction
+        current_heading = tree.heading(column, "text")
+        if current_heading.endswith(" ▼"):
+            descending = False
+        else:
+            descending = True
+
+        # Remove sorting indicators from all columns
+        for col in tree["columns"]:
+            tree.heading(col, text=col)
+
+        # Sort the data
+        data = [(tree.set(child, column), child) for child in tree.get_children('')]
         try:
-            # oneshot to improve info retrieve efficiency
-            with p.oneshot():
-                process_table.add_row([
-                    str(p.pid),
-                    p.name(),
-                    p.status(),
-                    f'{cpu_percent:.2f}' + "%",
-                    p.num_threads(),
-                    f'{p.memory_info().rss / 1e6:.3f}'
-                ])
+            data.sort(key=lambda x: float(x[0]), reverse=descending)
+        except ValueError:
+            data.sort(reverse=descending)
+        for index, (val, child) in enumerate(data):
+            tree.move(child, '', index)
 
+        # Update the column heading text with sorting indicator
+        if descending:
+            tree.heading(column, text=column + " ▼")
+        else:
+            tree.heading(column, text=column + " ▲")
+
+    all_processes = get_processes()
+    for p, cpu_percent in all_processes:
+        try:
+            with p.oneshot():
+                tree.insert("", "end", text="", values=(p.pid, p.name(), p.status(), f'{cpu_percent:.2f}%', p.num_threads(), f'{p.memory_info().rss / 1e6:.3f}'))
         except Exception as e:
             pass
-    print(process_table)
 
-    # Create a 1 second delay
-    time.sleep(1)
+    # add a vertical scrollbar to the window
+    scrollbar = ttk.Scrollbar(root, orient='vertical', command=tree.yview)
+    scrollbar.pack(side=ctk.RIGHT, fill=ctk.Y)
+
+    # configure treeview to use the scrollbar
+    tree.configure(yscrollcommand=scrollbar.set)
+
+    tree.pack(expand=True, fill=ctk.BOTH)
+
+    root.mainloop()
+
+def main():
+    while True:
+        show_processes()
+        time.sleep(5)  # Update every 5 seconds
+
+if __name__ == '__main__':
+    main()
