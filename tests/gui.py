@@ -69,17 +69,40 @@ class AppGUI:
             self.tree.heading(column, text=column + " ▼")
 
     def show_processes(self):
+        all_processes = ProcessManager.get_processes()
+        self._update_processes(all_processes)
+
+    def _update_processes(self, all_processes):
         # Clear existing items in the treeview
         for item in self.tree.get_children():
             self.tree.delete(item)
 
-        all_processes = ProcessManager.get_processes()
+        parent_processes = {}  # Dictionary to store parent processes and their corresponding subprocesses
+
         for p, cpu_percent in all_processes:
             try:
-                with p.oneshot():
-                    self.tree.insert("", "end", text="", values=(p.pid, p.name(), p.status(), f'{cpu_percent:.2f}%', p.num_threads(), f'{p.memory_info().rss / 1e6:.3f}'))
-            except Exception as e:
+                parent_pid = p.ppid()  # Get the parent process ID
+                if parent_pid not in parent_processes:
+                    parent_processes[parent_pid] = []  # Initialize list for subprocesses of this parent
+                parent_processes[parent_pid].append((p, cpu_percent))  # Add subprocess to the list of subprocesses of this parent
+            except:
                 pass
+
+        for parent_pid, subprocesses in parent_processes.items():
+            try:
+                parent_process = ProcessManager.get_parent_process(parent_pid)  # Get the parent process
+                with parent_process.oneshot():
+                    parent_item = self.tree.insert("", "end", text="", values=(parent_process.pid, parent_process.name(), parent_process.status(), f'{parent_process.cpu_percent():.2f}%', parent_process.num_threads(), f'{parent_process.memory_info().rss / 1e6:.3f}'))
+            except:
+                continue
+
+            # Add subprocesses as children of their parent process
+            for subprocess, cpu_percent in subprocesses:
+                try:
+                    with subprocess.oneshot():
+                        self.tree.insert(parent_item, "end", text="", values=(subprocess.pid, "    " + subprocess.name(), subprocess.status(), f'{cpu_percent:.2f}%', subprocess.num_threads(), f'{subprocess.memory_info().rss / 1e6:.3f}'))
+                except:
+                    continue
 
         self.root.mainloop()
 

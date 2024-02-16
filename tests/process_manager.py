@@ -1,6 +1,6 @@
 import psutil
 import tkinter.messagebox as messagebox
-import time
+
 class ProcessManager:
     @staticmethod
     def get_processes():
@@ -16,13 +16,16 @@ class ProcessManager:
 
         # Sort processes by CPU percentage
         top = {}
-        time.sleep(0.1)
         for p in proc:
             top[p] = p.cpu_percent() / psutil.cpu_count()
 
         top_list = sorted(top.items(), key=lambda x: x[1], reverse=True)
 
         return top_list
+    
+    def get_parent_process(parent_pid):
+        return psutil.Process(parent_pid)
+
 
     @staticmethod
     def kill_process(tree, pid):
@@ -31,6 +34,11 @@ class ProcessManager:
             response = messagebox.askyesno("Kill Process", f"Are you sure you want to kill process {p.name()} (PID: {pid})?")
             if response:
                 p.terminate()
-                tree.delete(item)
+                # Update the GUI to remove the terminated process
+                item = tree.get_children()
+                for child in item:
+                    if tree.item(child, "values")[0] == pid:
+                        tree.delete(child)
+                        break
         except psutil.NoSuchProcess:
             messagebox.showwarning("Process Not Found", f"Process with PID {pid} no longer exists.")
