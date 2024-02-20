@@ -26,14 +26,13 @@ update_blocked_ips()
 
 while True:  # Add an infinite loop
     try:
+        if time.time() - last_update_time > 60:
+            update_blocked_ips()
+            last_update_time = time.time()
+
         with WinDivert() as w:
             last_update_time = time.time()
             for packet in w:
-                # Update the blocked IPs every minute
-                if time.time() - last_update_time > 60:
-                    update_blocked_ips()
-                    last_update_time = time.time()
-
                 if error_state:  # Drop all packets if in error state
                     print("In error state, dropping all packets")
                     continue
@@ -48,6 +47,8 @@ while True:  # Add an infinite loop
                                 break
                         else:
                             w.send(packet)
+                    else:
+                        w.send(packet)  # Add this line to allow non-DNS UDP packets
                 elif packet.dst_addr in blocked_ips:
                     print(f"Blocked traffic to {packet.dst_addr}")
                 else:
