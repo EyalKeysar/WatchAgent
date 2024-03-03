@@ -23,7 +23,7 @@ class ProcessManager:
 
         return top_list
     
-    def get_parent_process(parent_pid):
+    def get_process_by_id(parent_pid):
         return psutil.Process(parent_pid)
 
 

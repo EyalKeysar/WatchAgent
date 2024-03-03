@@ -90,7 +90,7 @@ class AppGUI:
 
         for parent_pid, subprocesses in parent_processes.items():
             try:
-                parent_process = ProcessManager.get_parent_process(parent_pid)  # Get the parent process
+                parent_process = ProcessManager.get_process_by_id(parent_pid)  # Get the parent process
                 with parent_process.oneshot():
                     parent_item = self.tree.insert("", "end", text="", values=(parent_process.pid, parent_process.name(), parent_process.status(), f'{parent_process.cpu_percent():.2f}%', parent_process.num_threads(), f'{parent_process.memory_info().rss / 1e6:.3f}'))
             except:
