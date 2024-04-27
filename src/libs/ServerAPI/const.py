@@ -1,0 +1,7 @@
+SERVER_IP = 'localhost'
+SERVER_PORT = 9898
+
+
+
+LEN_SEPERATOR = "|"
+ARGS_SEPERATOR = "|"
