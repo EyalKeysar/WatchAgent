@@ -1,5 +1,4 @@
 import sqlite3
-from ..libs.ServerAPI.shared.SharedDTO import Restriction, TimeLimit, ChildData
 CREATE_RESTRICTIONS_TABLE = """
 CREATE TABLE IF NOT EXISTS restrictions (
     id INTEGER PRIMARY KEY,
@@ -38,7 +37,7 @@ class DBHandler:
         self.cursor.execute(CREATE_TIMELIMIT_TABLE)
         self.conn.commit()
 
-    def add_restriction(self, restriction: Restriction):
+    def add_restriction(self, restriction):
         self.logger.info(f"Adding restriction: {restriction.__dict__}")
         self.cursor.execute(ADD_RESTRICTION, 
                             (restriction.program_name, restriction.start_time, restriction.end_time, restriction.allowed_time, restriction.time_span, restriction.usage_time))
@@ -53,7 +52,7 @@ class DBHandler:
         self.cursor.execute("DELETE FROM restrictions WHERE id=?", (id,))
         self.conn.commit()
 
-    def modify_restriction(self, id, restriction: Restriction):
+    def modify_restriction(self, id, restriction):
         self.logger.info(f"Modifying restriction with id: {id}")
         update_query = """
         UPDATE restrictions 
