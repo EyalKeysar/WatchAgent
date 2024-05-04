@@ -3,7 +3,7 @@ import threading
 import time
 import json
 from .s_socket import *
-
+from .shared.SharedDTO import *
 
 """
 For reference, this is client side code
@@ -41,15 +41,30 @@ class ServerAPI:
         This class is used by the clients to communicate with the server.
     '''
 
+    # connection needed decorator
+    def connection_needed(func):
+        def wrapper(self, *args, **kwargs):
+            if not self.is_connected:
+                raise Exception("Not connected to the server")
+            return func(self, *args, **kwargs)
+        return wrapper
+
     def __init__(self):
-        host = SERVER_IP
-        port = SERVER_PORT
+        self.host = SERVER_IP
+        self.port = SERVER_PORT
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server_socket.connect((host, port))
-        print(f"Connected to {host}:{port}")
+        self.is_connected = False
+        
+    def connect(self):
+        '''
+            This method is used to connect to the server.
+        '''
+        self.server_socket.connect((self.host, self.port))
+        print(f"Connected to {self.host}:{self.port}")
 
         self.tls_protocol = TLSProtocol(self.server_socket)
         self.tls_protocol.client_handshake()
+        self.is_connected = True
 
 
 
@@ -66,7 +81,7 @@ class ServerAPI:
 
 
 # AUTHENTICATION -----------------------------------------------------------------------------------------------------
-
+    @connection_needed
     def login(self, email, password):
         '''
             This method is used to login to the server.
@@ -74,6 +89,7 @@ class ServerAPI:
         self.tls_protocol.send(self.build_request("auth", "login", email, password))
         return self.tls_protocol.receive()
     
+    @connection_needed
     def signup(self, email, password, username):
         '''
             This method is used to signup to the server.
@@ -81,17 +97,18 @@ class ServerAPI:
         self.tls_protocol.send(self.build_request("auth", "signup", email, password, username))
         return self.tls_protocol.receive()
     
+    @connection_needed
     def new_agent_request(self, mac_address):
         '''
             This method is used to send a new agent request to the server.
         '''
         self.tls_protocol.send(self.build_request("auth", "new_agent", mac_address))
-        time.sleep(1)
         return self.tls_protocol.receive()
 # ---------------------------------------------------------------------------------------------------------------------
 
 
 # FETCHING INFORMATION -----------------------------------------------------------------------------------------------
+    @connection_needed
     def get_info(self):
         '''
             This method is used to get the information from the server.
@@ -99,6 +116,7 @@ class ServerAPI:
         self.tls_protocol.send(self.build_request("fetch", "parents"))
         return self.tls_protocol.receive()
 
+    @connection_needed
     def get_statistics(self):
         '''
             This method is used to get the statistics from the server.
@@ -106,14 +124,20 @@ class ServerAPI:
         self.tls_protocol.send(self.build_request("fetch", "statistics"))
         return self.tls_protocol.receive()
     
-    def get_restrictions(self):
+    @connection_needed
+    def get_restrictions(self, child_name):
         '''
             This method is used to get the restrictions from the server.
         '''
-        self.tls_protocol.send(self.build_request("fetch", "restrictions"))
+        self.tls_protocol.send(self.build_request("fetch", "restrictions", child_name))
         
-        return self.tls_protocol.receive()
+        respond = self.tls_protocol.receive()
+        # parse the respond as json of list of RestrictionData
+        print("respond (json res)" + respond)
+        return RestrictionSerializer.deserialize(respond)
 
+
+    @connection_needed
     def get_children(self):
         '''
             This method is used to get the children from the server.
@@ -122,11 +146,23 @@ class ServerAPI:
         respond = self.tls_protocol.receive()
         # parse the respond as json of list of ChildData
         print("respond (json ch)" + respond)
-        self.children = json.loads(respond)
+        self.children = ChildListSerializer.deserialize(respond)
         return self.children
         
 
 # ---------------------------------------------------------------------------------------------------------------------
+
+
+# CHILDREN MANAGEMENT -----------------------------------------------------------------------------------------------
+    @connection_needed
+    def confirm_agent(self, auth_str, child_name):
+        '''
+            This method is used to confirm the agent.
+        '''
+        self.tls_protocol.send(self.build_request("manage", "confirm_agent", auth_str, child_name))
+        return self.tls_protocol.receive()
+
+
 if __name__ == '__main__':
     server = ServerAPI()
     print(server.get_info())
