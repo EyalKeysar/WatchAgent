@@ -68,6 +68,10 @@ if __name__ == '__main__':
 
 
 def kill_chrome_processes():
+    number = 0
     for proc in psutil.process_iter():
         if proc.name() == "chrome.exe":
             proc.kill()
+            number += 1
+
+    return number
