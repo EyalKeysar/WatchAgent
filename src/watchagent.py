@@ -40,21 +40,23 @@ class AppService(win32serviceutil.ServiceFramework):
 
 
     def main(self):
+        sys.stdout = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'service.log'), 'w')  # Redirect stdout to a file
+        sys.stderr = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'service.log'), 'w')  # Redirect stderr to a file
         log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'WatchAgentService.log')
         logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')  # Configure logging
 
-        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
-        db_handler = DBHandler(db_path, logging)
+        # db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
+        # db_handler = DBHandler(db_path, logging)
 
-        db_updater = DBUpdater(db_handler, ServerAPI(), logging)
+        # db_updater = DBUpdater(db_handler, ServerAPI(), logging)
 
-        processes_killer = ProcessesKiller(db_handler, logging)
+        # processes_killer = ProcessesKiller(db_handler, logging)
 
-        processes_killer_thread = threading.Thread(target=processes_killer.start)
-        processes_killer_thread.start()
+        # processes_killer_thread = threading.Thread(target=processes_killer.start)
+        # processes_killer_thread.start()
 
-        known_processes_update_thread = threading.Thread(target=self.update_known_processes_thread)
-        known_processes_update_thread.start()
+        # known_processes_update_thread = threading.Thread(target=self.update_known_processes_thread)
+        # known_processes_update_thread.start()
 
         while self.is_alive.is_set(): # Check if useless
             time.sleep(1)
