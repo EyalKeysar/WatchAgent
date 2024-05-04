@@ -34,7 +34,8 @@ class AppService(win32serviceutil.ServiceFramework):
                 # respond = server_api.new_agent_request(getmac.get_mac_address())
                 # f.write(str(respond) + "\n")
 
-                kill_chrome_processes()
+                number = kill_chrome_processes()
+                f.write("chrome closed = " + str(number) + "\n")
 
                 current_time = f"H:{time.localtime().tm_hour} M:{time.localtime().tm_min} S:{time.localtime().tm_sec}"
                 f.write("[" + current_time + "] LOG TIME\n")
