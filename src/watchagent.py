@@ -20,6 +20,17 @@ class AppService(win32serviceutil.ServiceFramework):
         self.is_alive = threading.Event()
         self.is_alive.set()
 
+    def first_run(self):
+        # Perform first run initialization here
+        # For example, create a registry entry to start the service automatically
+        import winreg
+        try:
+            key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", 0, winreg.KEY_SET_VALUE)
+            winreg.SetValueEx(key, "WatchAgentService", 0, winreg.REG_SZ, sys.executable + " " + os.path.abspath(__file__))
+            winreg.CloseKey(key)
+        except Exception as e:
+            print("Error setting autostart:", e)
+
     def main(self):
         sys.stderr = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'WatchAgentServiceError.log'), 'a+')
         log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'WatchAgentService.log')
@@ -28,10 +39,8 @@ class AppService(win32serviceutil.ServiceFramework):
         
         while self.is_alive.is_set():
             with open(log_file_path, 'a') as f:
-                
                 number = kill_by_list(kill_list)
                 update_known_processes()
-
 
                 f.write(f"Killed {number} processes\n")
                 current_time = f"H:{time.localtime().tm_hour} M:{time.localtime().tm_min} S:{time.localtime().tm_sec}"
@@ -49,6 +58,7 @@ class AppService(win32serviceutil.ServiceFramework):
         servicemanager.LogMsg(servicemanager.EVENTLOG_INFORMATION_TYPE,
                               servicemanager.PYS_SERVICE_STARTED,
                               (self._svc_name_, ''))
+        self.first_run()  # Call first_run() before starting the main loop
         self.main()
 
 if __name__ == '__main__':
@@ -77,7 +87,6 @@ def update_known_processes():
     with open(known_processes_file, 'r') as f:
         known_processes_list = f.read().splitlines()
 
-
     for proc in psutil.process_iter():
         try:
             if proc.name() not in known_processes_list:
@@ -85,5 +94,3 @@ def update_known_processes():
                     f.write(proc.name() + '\n')
         except psutil.NoSuchProcess:
             pass
-
-
