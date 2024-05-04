@@ -29,7 +29,8 @@ INSERT INTO restrictions (program_name, start_time, end_time, allowed_time, time
 """
 
 class DBHandler:
-    def __init__(self, path):
+    def __init__(self, path, logger):
+        self.logger = logger
         self.conn = sqlite3.connect(f"{path}")
         self.cursor = self.conn.cursor()
 
@@ -38,6 +39,7 @@ class DBHandler:
         self.conn.commit()
 
     def add_restriction(self, restriction: Restriction):
+        self.logger.info(f"Adding restriction: {restriction.__dict__}")
         self.cursor.execute(ADD_RESTRICTION, 
                             (restriction.program_name, restriction.start_time, restriction.end_time, restriction.allowed_time, restriction.time_span, restriction.usage_time))
         self.conn.commit()
@@ -47,10 +49,24 @@ class DBHandler:
         return self.cursor.fetchall()
     
     def delete_restriction(self, id):
+        self.logger.info(f"Deleting restriction with id: {id}")
         self.cursor.execute("DELETE FROM restrictions WHERE id=?", (id,))
         self.conn.commit()
 
-    
+    def modify_restriction(self, id, restriction: Restriction):
+        self.logger.info(f"Modifying restriction with id: {id}")
+        update_query = """
+        UPDATE restrictions 
+        SET start_time=?, end_time=?, allowed_time=?, time_span=? 
+        WHERE id=?
+        """
+        self.cursor.execute(update_query, 
+                            (restriction.start_time, restriction.end_time, restriction.allowed_time, restriction.time_span, id))
+        self.conn.commit()
+
+    def get_id_by_program_name(self, program_name):
+        self.cursor.execute("SELECT id FROM restrictions WHERE program_name=?", (program_name,))
+        return self.cursor.fetchone()
 
     def __del__(self):
         self.conn.close()
