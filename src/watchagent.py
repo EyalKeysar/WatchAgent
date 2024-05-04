@@ -26,8 +26,13 @@ class AppService(win32serviceutil.ServiceFramework):
         win32serviceutil.ServiceFramework.__init__(self, args)
         self.is_alive = threading.Event()
         self.is_alive.set()
+        log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'WatchAgentService.log')
+        logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')  # Configure logging
+        logging.info("\nService initialized -------------------------------------------------")
+        
 
     def first_run(self):
+        
         # Perform first run initialization here
         # For example, create a registry entry to start the service automatically
         import winreg
@@ -40,31 +45,47 @@ class AppService(win32serviceutil.ServiceFramework):
 
 
     def main(self):
-        sys.stdout = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'service.log'), 'w')  # Redirect stdout to a file
-        sys.stderr = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'service.log'), 'w')  # Redirect stderr to a file
-        log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'WatchAgentService.log')
-        logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')  # Configure logging
+        logging.info("Starting main loop")
 
-        # db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
-        # db_handler = DBHandler(db_path, logging)
+        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
+        db_handler = DBHandler(db_path, logging)
 
-        # db_updater = DBUpdater(db_handler, ServerAPI(), logging)
+        logging.info("DBHandler initialized")
 
-        # processes_killer = ProcessesKiller(db_handler, logging)
+        try:
+            serverapi = ServerAPI.ServerAPI()
+        except Exception as e:
+            logging.error("Error initializing ServerAPI: %s", e)
+            return
+        logging.info("ServerAPI initialized")
+        Utils.check_connection(serverapi, logging)
+        # db_updater = DBUpdater(db_handler, serverapi, logging)
 
-        # processes_killer_thread = threading.Thread(target=processes_killer.start)
-        # processes_killer_thread.start()
+        logging.info("DBUpdater initialized")
 
-        # known_processes_update_thread = threading.Thread(target=self.update_known_processes_thread)
-        # known_processes_update_thread.start()
+        processes_killer = ProcessesKiller(db_handler, logging)
 
-        while self.is_alive.is_set(): # Check if useless
-            time.sleep(1)
+        processes_killer_thread = threading.Thread(target=processes_killer.start)
+        processes_killer_thread.start()
+
+        logging.info("ProcessesKiller started")
+
+
+        known_processes_update_thread = threading.Thread(target=Utils.update_known_processes)
+        known_processes_update_thread.start()
+
+
+        logging.info("Known processes update thread started")
+
+        while self.is_alive.is_set():
+            Utils.check_connection(serverapi, logging)
+
+            time.sleep(3)
 
 
 
     def SvcStop(self):
-        logging.info("Stopping service")
+        logging.info("Stopping service -------------------------------------------------\n")
         self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
         self.is_alive.clear()
         self.is_alive.wait(10)  # Wait for the main loop to stop
@@ -98,13 +119,22 @@ class Utils:
             time.sleep(5)
 
     @staticmethod
-    def check_connection(server_api):
+    def check_connection(server_api, logger):
+        logger.info("Checking connection to server")
         try:
             if(server_api.is_connected):
-                response = server_api.get_info()
+                logger.info("Already connected to server, getting info...")
+                response = server_api.ping()
             else:
+                logger.info("Connecting to server...")
                 server_api.connect()
-                response = server_api.get_info()
+                response = server_api.ping()
+            if server_api.is_connected and response == "pong":
+                logging.info("Connected to server, response: %s", response)
+                return True
+            else:
+                logging.error("Error connecting to server")
+                return False
         except Exception as e:
             logging.error("Error connecting to server: %s", e)
             return False
