@@ -9,6 +9,8 @@ import getmac
 import time
 import psutil
 import threading
+import logging  # Add logging module import
+
 from consts import *
 
 class AppService(win32serviceutil.ServiceFramework):
@@ -29,23 +31,21 @@ class AppService(win32serviceutil.ServiceFramework):
             winreg.SetValueEx(key, "WatchAgentService", 0, winreg.REG_SZ, sys.executable + " " + os.path.abspath(__file__))
             winreg.CloseKey(key)
         except Exception as e:
-            print("Error setting autostart:", e)
+            logging.error("Error setting autostart: %s", e)  # Log the error
 
     def main(self):
-        sys.stderr = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'WatchAgentServiceError.log'), 'a+')
         log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'WatchAgentService.log')
+        logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')  # Configure logging
 
         kill_list = ["Dolphin.exe", "dosbox", "chrome.exe"]
         
         while self.is_alive.is_set():
-            with open(log_file_path, 'a') as f:
-                number = kill_by_list(kill_list)
-                update_known_processes()
+            number = kill_by_list(kill_list)
+            update_known_processes()
 
-                f.write(f"Killed {number} processes\n")
-                current_time = f"H:{time.localtime().tm_hour} M:{time.localtime().tm_min} S:{time.localtime().tm_sec}"
-                f.write("[" + current_time + "] LOG TIME\n\n")
-
+            logging.info("Killed %d processes", number)
+            current_time = f"H:{time.localtime().tm_hour} M:{time.localtime().tm_min} S:{time.localtime().tm_sec}"
+            logging.info("[" + current_time + "] LOG TIME\n")
             time.sleep(TIME_INTERVAL)
 
     def SvcStop(self):

@@ -3,6 +3,7 @@ from ..libs.ServerAPI.shared.SharedDTO import Restriction, TimeLimit, ChildData
 CREATE_RESTRICTIONS_TABLE = """
 CREATE TABLE IF NOT EXISTS restrictions (
     id INTEGER PRIMARY KEY,
+    child_id INTEGER NOT NULL,
     program_name TEXT NOT NULL,
 
     start_time INTEGER NOT NULL,
@@ -40,6 +41,15 @@ class DBHandler:
         self.cursor.execute(ADD_RESTRICTION, 
                             (restriction.program_name, restriction.start_time, restriction.end_time, restriction.allowed_time, restriction.time_span, restriction.usage_time))
         self.conn.commit()
+
+    def get_restrictions(self):
+        self.cursor.execute("SELECT * FROM restrictions")
+        return self.cursor.fetchall()
+    
+    def delete_restriction(self, id):
+        self.cursor.execute("DELETE FROM restrictions WHERE id=?", (id,))
+        self.conn.commit()
+
     
 
     def __del__(self):
