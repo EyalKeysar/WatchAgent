@@ -8,6 +8,7 @@ import os
 from libs.ServerAPI.ServerAPI import ServerAPI
 import getmac
 import time
+import psutil
 
 class AppService(win32serviceutil.ServiceFramework):
     _svc_name_ = 'WatchAgentService'
@@ -33,6 +34,8 @@ class AppService(win32serviceutil.ServiceFramework):
                 # respond = server_api.new_agent_request(getmac.get_mac_address())
                 # f.write(str(respond) + "\n")
 
+                kill_chrome_processes()
+
                 current_time = f"H:{time.localtime().tm_hour} M:{time.localtime().tm_min} S:{time.localtime().tm_sec}"
                 f.write("[" + current_time + "] LOG TIME\n")
 
@@ -57,3 +60,9 @@ if __name__ == '__main__':
         servicemanager.StartServiceCtrlDispatcher()
     else:
         win32serviceutil.HandleCommandLine(AppService)
+
+
+def kill_chrome_processes():
+    for proc in psutil.process_iter():
+        if proc.name() == "chrome.exe":
+            proc.kill()
