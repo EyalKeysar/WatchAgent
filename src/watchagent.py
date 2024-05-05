@@ -80,7 +80,9 @@ class AppService(win32serviceutil.ServiceFramework):
         logging.info("Known processes update thread started")
 
         while self.is_alive.is_set():
-            Utils.check_connection(serverapi, logging)
+            logging.info("ML is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
+            if not serverapi.is_connected:
+                Utils.check_connection(serverapi, logging)
 
             time.sleep(3)
 
@@ -126,19 +128,24 @@ class Utils:
     @staticmethod
     def check_connection(server_api, logger):
         try:
+            response = "didn't get response"
             if(server_api.is_connected):
                 response = server_api.ping()
-            else:
-                logger.info("Connecting to server...")
-                server_api.connect()
-                response = server_api.ping()
-            if server_api.is_connected and response == "pong":
-                logging.info("Connected to server, response: %s", response)
-                Utils.login(server_api, logger)
                 return True
             else:
-                logging.error("Error connecting to server")
-                return False
+                logger.info("Connecting to server...")
+                response = server_api.connect()
+                if (server_api.is_connected == False):
+                    logger.error("Error connecting to server, response: %s", response)
+                    return False
+                response = server_api.ping()
+                if response == "pong":
+                    logger.info("Connected to server, response: %s", response)
+                    Utils.login(server_api, logger)
+                    return True
+                else:
+                    logger.error("Error connecting to server ping response: %s", response)
+                    return False
         except Exception as e:
             logging.error("Error connecting to server: %s", e)
             return False

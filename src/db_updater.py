@@ -10,27 +10,39 @@ class DBUpdater:
     def start(self):
         self.logger.info("DBUpdater initialized --")
         while True:
-            if(self.server_api.is_authenticated and self.server_api.is_connected):
-                self.update_known_processes()
-                self.update_restrictions()
+            self.logger.info("DBUpdater is running")
+            try:
+                if(self.server_api.is_authenticated and self.server_api.is_connected):
+                    self.logger.info("Updating known processes")
+                    self.update_known_processes()
+                    self.update_restrictions(self.get_update_restrictions())
+                else:
+                    self.logger.info("is_authenticated: %s, is_connected: %s", self.server_api.is_authenticated, self.server_api.is_connected)
+            except Exception as e:
+                self.logger.error("Error in DBUpdater: %s", e)
             time.sleep(5)
 
     def update_known_processes(self):
         try:
             known_programs = self.get_known_processes()
             self.server_api.update_known_programs(known_programs)
+            self.logger.info(f"Known processes updated to server {known_programs}")
         except Exception as e:
             self.logger.error("Error updating known processes to server: %s", e)
 
     def get_known_processes(self):
-        known_processes_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'known_processes.txt')
-        known_processes_list = []
-        if not os.path.exists(known_processes_file):
-            return known_processes_list
-        with open(known_processes_file, 'r') as f:
-            known_processes_list = f.read().splitlines()
-        self.logger.info(f"Known processes: {known_processes_list}")
-        return known_processes_list       
+        try:
+            known_processes_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'known_processes.txt')
+            known_processes_list = []
+            if not os.path.exists(known_processes_file):
+                return known_processes_list
+            with open(known_processes_file, 'r') as f:
+                known_processes_list = f.read().splitlines()
+            self.logger.info(f"Known processes: {known_processes_list}")
+            return known_processes_list       
+        except Exception as e:
+            self.logger.error("Error getting known processes: %s", e)
+            return []
     
     def get_update_restrictions(self):
         try:
