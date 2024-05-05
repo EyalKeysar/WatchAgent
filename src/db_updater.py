@@ -57,6 +57,9 @@ class DBUpdater:
                 if new_restriction_list:
                     self.logger.info(f"Restrictions updated: {new_restriction_list}")
                     return new_restriction_list
+                else:
+                    self.logger.info("No new restrictions found")
+                    return []
             else:
                 self.logger.info("No new restrictions found")
                 return []    
