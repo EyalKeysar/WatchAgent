@@ -140,3 +140,16 @@ class ChildListSerializer:
             children.append(ChildData(child.child_id, child.parent_email, child.child_name, child.restrictions, child.time_limit))
         
         return children
+    
+class StringListSerializer:
+    @staticmethod
+    def serialize(string_list):
+        if string_list is None:
+            return None
+        return json.dumps(string_list)
+    
+    @staticmethod
+    def deserialize(serialized):
+        if serialized is None:
+            return None
+        return json.loads(serialized)

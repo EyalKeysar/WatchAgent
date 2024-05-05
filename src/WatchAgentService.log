@@ -1,0 +1,516 @@
+2024-05-05 03:09:09,614 INFO: 
+Service initialized -------------------------------
+2024-05-05 03:09:09,614 INFO: Starting service
+2024-05-05 03:09:09,615 INFO: Starting main loop
+2024-05-05 03:09:09,616 INFO: DBHandler initialized
+2024-05-05 03:09:09,617 INFO: ServerAPI initialized
+2024-05-05 03:09:09,617 INFO: Connecting to server...
+2024-05-05 03:09:11,663 ERROR: Error connecting to server
+2024-05-05 03:09:11,664 INFO: DBUpdater initialized --
+2024-05-05 03:09:11,665 INFO: DBUpdater initialized
+2024-05-05 03:09:11,665 INFO: ProcessesKiller started
+2024-05-05 03:09:11,666 INFO: Known processes update thread started
+2024-05-05 03:09:11,666 INFO: Connecting to server...
+2024-05-05 03:09:11,673 INFO: New process found: System Idle Process
+2024-05-05 03:09:11,674 INFO: New process found: System
+2024-05-05 03:09:11,674 INFO: New process found: 
+2024-05-05 03:09:11,675 INFO: New process found: fontdrvhost.exe
+2024-05-05 03:09:11,675 INFO: New process found: Registry
+2024-05-05 03:09:11,675 INFO: New process found: smss.exe
+2024-05-05 03:09:11,675 INFO: New process found: winlogon.exe
+2024-05-05 03:09:11,676 INFO: New process found: csrss.exe
+2024-05-05 03:09:11,676 INFO: New process found: sqlbrowser.exe
+2024-05-05 03:09:11,676 INFO: New process found: wininit.exe
+2024-05-05 03:09:11,677 INFO: New process found: csrss.exe
+2024-05-05 03:09:11,677 INFO: New process found: fontdrvhost.exe
+2024-05-05 03:09:11,677 INFO: New process found: services.exe
+2024-05-05 03:09:11,677 INFO: New process found: LsaIso.exe
+2024-05-05 03:09:11,678 INFO: New process found: lsass.exe
+2024-05-05 03:09:11,678 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,678 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,678 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,679 INFO: New process found: dwm.exe
+2024-05-05 03:09:11,679 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,680 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,680 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,680 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,681 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,681 INFO: New process found: IntelCpHDCPSvc.exe
+2024-05-05 03:09:11,682 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,682 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,682 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,683 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,683 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,683 INFO: New process found: igfxCUIService.exe
+2024-05-05 03:09:11,684 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,684 INFO: New process found: IntelCpHeciSvc.exe
+2024-05-05 03:09:11,684 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,685 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,685 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,685 INFO: New process found: RuntimeBroker.exe
+2024-05-05 03:09:11,686 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,686 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,686 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,687 INFO: New process found: NVDisplay.Container.exe
+2024-05-05 03:09:11,687 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,687 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,687 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,688 INFO: New process found: notepad.exe
+2024-05-05 03:09:11,688 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,688 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,689 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,689 INFO: New process found: wsc_proxy.exe
+2024-05-05 03:09:11,689 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,690 INFO: New process found: python.exe
+2024-05-05 03:09:11,690 INFO: New process found: MemCompression
+2024-05-05 03:09:11,690 INFO: New process found: com.docker.extensions.exe
+2024-05-05 03:09:11,697 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,697 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,698 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,698 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,699 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,699 INFO: New process found: Spotify.exe
+2024-05-05 03:09:11,699 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,700 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,700 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,700 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,701 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,701 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,701 INFO: New process found: VpnSvc.exe
+2024-05-05 03:09:11,702 INFO: New process found: NVDisplay.Container.exe
+2024-05-05 03:09:11,702 INFO: New process found: Spotify.exe
+2024-05-05 03:09:11,702 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,703 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,703 INFO: New process found: Code.exe
+2024-05-05 03:09:11,703 INFO: New process found: Code.exe
+2024-05-05 03:09:11,704 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,704 INFO: New process found: AvastSvc.exe
+2024-05-05 03:09:11,704 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,705 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,705 INFO: New process found: com.docker.backend.exe
+2024-05-05 03:09:11,705 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,705 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,706 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,706 INFO: New process found: aswToolsSvc.exe
+2024-05-05 03:09:11,706 INFO: New process found: Code.exe
+2024-05-05 03:09:11,706 INFO: New process found: spoolsv.exe
+2024-05-05 03:09:11,707 INFO: New process found: docker.exe
+2024-05-05 03:09:11,707 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,707 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,707 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,708 INFO: New process found: Everything.exe
+2024-05-05 03:09:11,708 INFO: New process found: OfficeClickToRun.exe
+2024-05-05 03:09:11,708 INFO: New process found: nvcontainer.exe
+2024-05-05 03:09:11,709 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,709 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,709 INFO: New process found: IpOverUsbSvc.exe
+2024-05-05 03:09:11,709 INFO: New process found: Code.exe
+2024-05-05 03:09:11,710 INFO: New process found: dasHost.exe
+2024-05-05 03:09:11,710 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,711 INFO: New process found: cmd.exe
+2024-05-05 03:09:11,711 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,711 INFO: New process found: gamingservices.exe
+2024-05-05 03:09:11,712 INFO: New process found: SearchApp.exe
+2024-05-05 03:09:11,712 INFO: New process found: servicehost.exe
+2024-05-05 03:09:11,713 INFO: New process found: gamingservicesnet.exe
+2024-05-05 03:09:11,713 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,713 INFO: New process found: nvcontainer.exe
+2024-05-05 03:09:11,714 INFO: New process found: nisvcloc.exe
+2024-05-05 03:09:11,714 INFO: New process found: sqlservr.exe
+2024-05-05 03:09:11,714 INFO: New process found: nvcontainer.exe
+2024-05-05 03:09:11,715 INFO: New process found: niauth_daemon.exe
+2024-05-05 03:09:11,715 INFO: New process found: OriginWebHelperService.exe
+2024-05-05 03:09:11,715 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,716 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,716 INFO: New process found: RzSDKService.exe
+2024-05-05 03:09:11,716 INFO: New process found: RzSDKServer.exe
+2024-05-05 03:09:11,717 INFO: New process found: RzChromaStreamServer.exe
+2024-05-05 03:09:11,717 INFO: New process found: GameManagerService.exe
+2024-05-05 03:09:11,718 INFO: New process found: RazerCentralService.exe
+2024-05-05 03:09:11,718 INFO: New process found: jhi_service.exe
+2024-05-05 03:09:11,718 INFO: New process found: Code.exe
+2024-05-05 03:09:11,719 INFO: New process found: sshd.exe
+2024-05-05 03:09:11,719 INFO: New process found: sqlwriter.exe
+2024-05-05 03:09:11,719 INFO: New process found: vmware-authd.exe
+2024-05-05 03:09:11,720 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,720 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,720 INFO: New process found: nimdnsResponder.exe
+2024-05-05 03:09:11,721 INFO: New process found: lkads.exe
+2024-05-05 03:09:11,721 INFO: New process found: vmnat.exe
+2024-05-05 03:09:11,721 INFO: New process found: vmware-usbarbitrator64.exe
+2024-05-05 03:09:11,722 INFO: New process found: vmnetdhcp.exe
+2024-05-05 03:09:11,722 INFO: New process found: WMIRegistrationService.exe
+2024-05-05 03:09:11,722 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,723 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,723 INFO: New process found: GameBar.exe
+2024-05-05 03:09:11,723 INFO: New process found: Code.exe
+2024-05-05 03:09:11,723 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,724 INFO: New process found: wslservice.exe
+2024-05-05 03:09:11,724 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,724 INFO: New process found: Code.exe
+2024-05-05 03:09:11,725 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,725 INFO: New process found: GameBarFTServer.exe
+2024-05-05 03:09:11,725 INFO: New process found: LMS.exe
+2024-05-05 03:09:11,725 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,726 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,726 INFO: New process found: lktsrv.exe
+2024-05-05 03:09:11,726 INFO: New process found: nidmsrv.exe
+2024-05-05 03:09:11,727 INFO: New process found: niDiscSvc.exe
+2024-05-05 03:09:11,727 INFO: New process found: dllhost.exe
+2024-05-05 03:09:11,727 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,727 INFO: New process found: Code.exe
+2024-05-05 03:09:11,728 INFO: New process found: SearchIndexer.exe
+2024-05-05 03:09:11,728 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,728 INFO: New process found: powershell.exe
+2024-05-05 03:09:11,729 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,729 INFO: New process found: WmiPrvSE.exe
+2024-05-05 03:09:11,729 INFO: New process found: rundll32.exe
+2024-05-05 03:09:11,729 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,730 INFO: New process found: RuntimeBroker.exe
+2024-05-05 03:09:11,730 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,730 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,730 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,731 INFO: New process found: SystemSettings.exe
+2024-05-05 03:09:11,731 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,731 INFO: New process found: Razer Synapse Service.exe
+2024-05-05 03:09:11,732 INFO: New process found: ShellExperienceHost.exe
+2024-05-05 03:09:11,732 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,732 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,732 INFO: New process found: AggregatorHost.exe
+2024-05-05 03:09:11,733 INFO: New process found: aswEngSrv.exe
+2024-05-05 03:09:11,733 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,733 INFO: New process found: RuntimeBroker.exe
+2024-05-05 03:09:11,734 INFO: New process found: explorer.exe
+2024-05-05 03:09:11,734 INFO: New process found: browserhost.exe
+2024-05-05 03:09:11,735 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,735 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,735 INFO: New process found: aswidsagent.exe
+2024-05-05 03:09:11,735 INFO: New process found: com.docker.cli.exe
+2024-05-05 03:09:11,736 INFO: New process found: PresentationFontCache.exe
+2024-05-05 03:09:11,736 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,736 INFO: New process found: SecurityHealthService.exe
+2024-05-05 03:09:11,737 INFO: New process found: Code.exe
+2024-05-05 03:09:11,737 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,737 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,737 INFO: New process found: taskhostw.exe
+2024-05-05 03:09:11,738 INFO: New process found: ctfmon.exe
+2024-05-05 03:09:11,738 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,738 INFO: New process found: igfxEM.exe
+2024-05-05 03:09:11,738 INFO: New process found: unsecapp.exe
+2024-05-05 03:09:11,739 INFO: New process found: SecurityHealthSystray.exe
+2024-05-05 03:09:11,739 INFO: New process found: RuntimeBroker.exe
+2024-05-05 03:09:11,739 INFO: New process found: pythonservice.exe
+2024-05-05 03:09:11,740 INFO: New process found: CalculatorApp.exe
+2024-05-05 03:09:11,740 INFO: New process found: uihost.exe
+2024-05-05 03:09:11,740 INFO: New process found: sihost.exe
+2024-05-05 03:09:11,741 INFO: New process found: Code.exe
+2024-05-05 03:09:11,741 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,741 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,742 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,742 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,742 INFO: New process found: RuntimeBroker.exe
+2024-05-05 03:09:11,742 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,743 INFO: New process found: StartMenuExperienceHost.exe
+2024-05-05 03:09:11,743 INFO: New process found: RuntimeBroker.exe
+2024-05-05 03:09:11,743 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,743 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,744 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,744 INFO: New process found: Razer Synapse Service Process.exe
+2024-05-05 03:09:11,744 INFO: New process found: UserOOBEBroker.exe
+2024-05-05 03:09:11,745 INFO: New process found: com.docker.dev-envs.exe
+2024-05-05 03:09:11,745 INFO: New process found: cmd.exe
+2024-05-05 03:09:11,745 INFO: New process found: AvastUI.exe
+2024-05-05 03:09:11,745 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,746 INFO: New process found: Spotify.exe
+2024-05-05 03:09:11,746 INFO: New process found: Code.exe
+2024-05-05 03:09:11,746 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,746 INFO: New process found: LockApp.exe
+2024-05-05 03:09:11,747 INFO: New process found: docker.exe
+2024-05-05 03:09:11,747 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,747 INFO: New process found: ApplicationFrameHost.exe
+2024-05-05 03:09:11,747 INFO: New process found: dllhost.exe
+2024-05-05 03:09:11,748 INFO: New process found: explorer.exe
+2024-05-05 03:09:11,748 INFO: New process found: mksSandbox.exe
+2024-05-05 03:09:11,748 INFO: New process found: AvastUI.exe
+2024-05-05 03:09:11,749 INFO: New process found: AvastUI.exe
+2024-05-05 03:09:11,749 INFO: New process found: TextInputHost.exe
+2024-05-05 03:09:11,749 INFO: New process found: Code.exe
+2024-05-05 03:09:11,750 INFO: New process found: SearchFilterHost.exe
+2024-05-05 03:09:11,750 INFO: New process found: Spotify.exe
+2024-05-05 03:09:11,750 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,750 INFO: New process found: CompPkgSrv.exe
+2024-05-05 03:09:11,751 INFO: New process found: Vpn.exe
+2024-05-05 03:09:11,751 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,751 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,752 INFO: New process found: vmplayer.exe
+2024-05-05 03:09:11,752 INFO: New process found: python.exe
+2024-05-05 03:09:11,752 INFO: New process found: nierserver.exe
+2024-05-05 03:09:11,752 INFO: New process found: Vpn.exe
+2024-05-05 03:09:11,753 INFO: New process found: Vpn.exe
+2024-05-05 03:09:11,753 INFO: New process found: Vpn.exe
+2024-05-05 03:09:11,753 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,753 INFO: New process found: Code.exe
+2024-05-05 03:09:11,754 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,754 INFO: New process found: Code.exe
+2024-05-05 03:09:11,754 INFO: New process found: Spotify.exe
+2024-05-05 03:09:11,754 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,755 INFO: New process found: vmcompute.exe
+2024-05-05 03:09:11,755 INFO: New process found: Code.exe
+2024-05-05 03:09:11,755 INFO: New process found: audiodg.exe
+2024-05-05 03:09:11,755 INFO: New process found: Code.exe
+2024-05-05 03:09:11,756 INFO: New process found: Code.exe
+2024-05-05 03:09:11,756 INFO: New process found: Code.exe
+2024-05-05 03:09:11,757 INFO: New process found: Code.exe
+2024-05-05 03:09:11,757 INFO: New process found: Code.exe
+2024-05-05 03:09:11,757 INFO: New process found: Everything.exe
+2024-05-05 03:09:11,758 INFO: New process found: Code.exe
+2024-05-05 03:09:11,758 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,758 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,759 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,759 INFO: New process found: Code.exe
+2024-05-05 03:09:11,759 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,759 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,760 INFO: New process found: powershell.exe
+2024-05-05 03:09:11,760 INFO: New process found: cmd.exe
+2024-05-05 03:09:11,760 INFO: New process found: powershell.exe
+2024-05-05 03:09:11,761 INFO: New process found: SearchApp.exe
+2024-05-05 03:09:11,761 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,761 INFO: New process found: Spotify.exe
+2024-05-05 03:09:11,762 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,762 INFO: New process found: RuntimeBroker.exe
+2024-05-05 03:09:11,762 INFO: New process found: powershell.exe
+2024-05-05 03:09:11,762 INFO: New process found: svchost.exe
+2024-05-05 03:09:11,763 INFO: New process found: Video.UI.exe
+2024-05-05 03:09:11,763 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,763 INFO: New process found: Code.exe
+2024-05-05 03:09:11,763 INFO: New process found: python.exe
+2024-05-05 03:09:11,764 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,764 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,764 INFO: New process found: Code.exe
+2024-05-05 03:09:11,764 INFO: New process found: python.exe
+2024-05-05 03:09:11,765 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,765 INFO: New process found: AvastUI.exe
+2024-05-05 03:09:11,765 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,766 INFO: New process found: conhost.exe
+2024-05-05 03:09:11,766 INFO: New process found: python.exe
+2024-05-05 03:09:11,766 INFO: New process found: vmware-unity-helper.exe
+2024-05-05 03:09:11,766 INFO: New process found: vmware-vmx.exe
+2024-05-05 03:09:11,767 INFO: New process found: Code.exe
+2024-05-05 03:09:11,767 INFO: New process found: powershell.exe
+2024-05-05 03:09:11,767 INFO: New process found: SgrmBroker.exe
+2024-05-05 03:09:11,768 INFO: New process found: powershell.exe
+2024-05-05 03:09:11,768 INFO: New process found: SearchProtocolHost.exe
+2024-05-05 03:09:11,768 INFO: New process found: RuntimeBroker.exe
+2024-05-05 03:09:11,769 INFO: New process found: chrome.exe
+2024-05-05 03:09:11,769 INFO: New process found: python.exe
+2024-05-05 03:09:11,769 INFO: New process found: com.docker.build.exe
+2024-05-05 03:09:13,714 ERROR: Error connecting to server
+2024-05-05 03:09:16,725 INFO: Connecting to server...
+2024-05-05 03:09:18,784 ERROR: Error connecting to server
+2024-05-05 03:09:21,800 INFO: Connecting to server...
+2024-05-05 03:09:23,182 INFO: Connected to server, response: pong
+2024-05-05 03:09:23,183 INFO: Agent id: 933837
+2024-05-05 03:09:23,198 INFO: Login successful
+2024-05-05 03:09:26,254 INFO: Connected to server, response: pong
+2024-05-05 03:09:26,255 INFO: Agent id: 933837
+2024-05-05 03:09:26,287 INFO: Login successful
+2024-05-05 03:09:26,720 INFO: Known processes: ['System Idle Process', 'System', '', 'fontdrvhost.exe', 'Registry', 'smss.exe', 'winlogon.exe', 'csrss.exe', 'sqlbrowser.exe', 'wininit.exe', 'csrss.exe', 'fontdrvhost.exe', 'services.exe', 'LsaIso.exe', 'lsass.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'dwm.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'IntelCpHDCPSvc.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'igfxCUIService.exe', 'svchost.exe', 'IntelCpHeciSvc.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'RuntimeBroker.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'NVDisplay.Container.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'notepad.exe', 'conhost.exe', 'svchost.exe', 'svchost.exe', 'wsc_proxy.exe', 'svchost.exe', 'python.exe', 'MemCompression', 'com.docker.extensions.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'Spotify.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'VpnSvc.exe', 'NVDisplay.Container.exe', 'Spotify.exe', 'svchost.exe', 'svchost.exe', 'Code.exe', 'Code.exe', 'svchost.exe', 'AvastSvc.exe', 'svchost.exe', 'svchost.exe', 'com.docker.backend.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'aswToolsSvc.exe', 'Code.exe', 'spoolsv.exe', 'docker.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'Everything.exe', 'OfficeClickToRun.exe', 'nvcontainer.exe', 'svchost.exe', 'svchost.exe', 'IpOverUsbSvc.exe', 'Code.exe', 'dasHost.exe', 'svchost.exe', 'cmd.exe', 'svchost.exe', 'gamingservices.exe', 'SearchApp.exe', 'servicehost.exe', 'gamingservicesnet.exe', 'chrome.exe', 'nvcontainer.exe', 'nisvcloc.exe', 'sqlservr.exe', 'nvcontainer.exe', 'niauth_daemon.exe', 'OriginWebHelperService.exe', 'svchost.exe', 'conhost.exe', 'RzSDKService.exe', 'RzSDKServer.exe', 'RzChromaStreamServer.exe', 'GameManagerService.exe', 'RazerCentralService.exe', 'jhi_service.exe', 'Code.exe', 'sshd.exe', 'sqlwriter.exe', 'vmware-authd.exe', 'conhost.exe', 'svchost.exe', 'nimdnsResponder.exe', 'lkads.exe', 'vmnat.exe', 'vmware-usbarbitrator64.exe', 'vmnetdhcp.exe', 'WMIRegistrationService.exe', 'svchost.exe', 'chrome.exe', 'GameBar.exe', 'Code.exe', 'conhost.exe', 'wslservice.exe', 'chrome.exe', 'Code.exe', 'chrome.exe', 'GameBarFTServer.exe', 'LMS.exe', 'svchost.exe', 'conhost.exe', 'lktsrv.exe', 'nidmsrv.exe', 'niDiscSvc.exe', 'dllhost.exe', 'svchost.exe', 'Code.exe', 'SearchIndexer.exe', 'svchost.exe', 'powershell.exe', 'svchost.exe', 'WmiPrvSE.exe', 'rundll32.exe', 'svchost.exe', 'RuntimeBroker.exe', 'conhost.exe', 'svchost.exe', 'svchost.exe', 'SystemSettings.exe', 'svchost.exe', 'Razer Synapse Service.exe', 'ShellExperienceHost.exe', 'conhost.exe', 'svchost.exe', 'AggregatorHost.exe', 'aswEngSrv.exe', 'svchost.exe', 'RuntimeBroker.exe', 'explorer.exe', 'browserhost.exe', 'svchost.exe', 'svchost.exe', 'aswidsagent.exe', 'com.docker.cli.exe', 'PresentationFontCache.exe', 'chrome.exe', 'SecurityHealthService.exe', 'Code.exe', 'svchost.exe', 'svchost.exe', 'taskhostw.exe', 'ctfmon.exe', 'svchost.exe', 'igfxEM.exe', 'unsecapp.exe', 'SecurityHealthSystray.exe', 'RuntimeBroker.exe', 'pythonservice.exe', 'CalculatorApp.exe', 'uihost.exe', 'sihost.exe', 'Code.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'svchost.exe', 'RuntimeBroker.exe', 'svchost.exe', 'StartMenuExperienceHost.exe', 'RuntimeBroker.exe', 'svchost.exe', 'conhost.exe', 'svchost.exe', 'Razer Synapse Service Process.exe', 'UserOOBEBroker.exe', 'com.docker.dev-envs.exe', 'cmd.exe', 'AvastUI.exe', 'svchost.exe', 'Spotify.exe', 'Code.exe', 'conhost.exe', 'LockApp.exe', 'docker.exe', 'svchost.exe', 'ApplicationFrameHost.exe', 'dllhost.exe', 'explorer.exe', 'mksSandbox.exe', 'AvastUI.exe', 'AvastUI.exe', 'TextInputHost.exe', 'Code.exe', 'SearchFilterHost.exe', 'Spotify.exe', 'conhost.exe', 'CompPkgSrv.exe', 'Vpn.exe', 'svchost.exe', 'conhost.exe', 'vmplayer.exe', 'python.exe', 'nierserver.exe', 'Vpn.exe', 'Vpn.exe', 'Vpn.exe', 'svchost.exe', 'Code.exe', 'svchost.exe', 'Code.exe', 'Spotify.exe', 'svchost.exe', 'vmcompute.exe', 'Code.exe', 'audiodg.exe', 'Code.exe', 'Code.exe', 'Code.exe', 'Code.exe', 'Code.exe', 'Everything.exe', 'Code.exe', 'conhost.exe', 'chrome.exe', 'svchost.exe', 'Code.exe', 'conhost.exe', 'chrome.exe', 'powershell.exe', 'cmd.exe', 'powershell.exe', 'SearchApp.exe', 'conhost.exe', 'Spotify.exe', 'conhost.exe', 'RuntimeBroker.exe', 'powershell.exe', 'svchost.exe', 'Video.UI.exe', 'conhost.exe', 'Code.exe', 'python.exe', 'chrome.exe', 'chrome.exe', 'Code.exe', 'python.exe', 'chrome.exe', 'AvastUI.exe', 'conhost.exe', 'conhost.exe', 'python.exe', 'vmware-unity-helper.exe', 'vmware-vmx.exe', 'Code.exe', 'powershell.exe', 'SgrmBroker.exe', 'powershell.exe', 'SearchProtocolHost.exe', 'RuntimeBroker.exe', 'chrome.exe', 'python.exe', 'com.docker.build.exe']
+2024-05-05 03:09:26,854 INFO: New process found: py.exe
+2024-05-05 03:09:29,328 INFO: Connected to server, response: pong
+2024-05-05 03:09:29,329 INFO: Agent id: 933837
+2024-05-05 03:09:29,376 INFO: Login successful
+2024-05-05 03:09:32,426 INFO: Connected to server, response: pong
+2024-05-05 03:09:32,427 INFO: Agent id: 933837
+2024-05-05 03:09:32,458 INFO: Login successful
+2024-05-05 03:09:35,478 INFO: Connected to server, response: pong
+2024-05-05 03:09:35,478 INFO: Agent id: 933837
+2024-05-05 03:09:35,511 INFO: Login successful
+2024-05-05 03:09:38,546 INFO: Connected to server, response: pong
+2024-05-05 03:09:38,547 INFO: Agent id: 933837
+2024-05-05 03:09:38,579 INFO: Login successful
+2024-05-05 03:09:41,610 INFO: Connected to server, response: pong
+2024-05-05 03:09:41,610 INFO: Agent id: 933837
+2024-05-05 03:09:41,643 INFO: Login successful
+2024-05-05 03:09:44,678 INFO: Connected to server, response: pong
+2024-05-05 03:09:44,679 INFO: Agent id: 933837
+2024-05-05 03:09:44,711 INFO: Login successful
+2024-05-05 03:09:47,740 INFO: Connected to server, response: pong
+2024-05-05 03:09:47,740 INFO: Agent id: 933837
+2024-05-05 03:09:47,757 INFO: Login successful
+2024-05-05 03:09:50,783 INFO: Connected to server, response: pong
+2024-05-05 03:09:50,784 INFO: Agent id: 933837
+2024-05-05 03:09:50,800 INFO: Login successful
+2024-05-05 03:09:53,845 INFO: Connected to server, response: pong
+2024-05-05 03:09:53,845 INFO: Agent id: 933837
+2024-05-05 03:09:53,893 INFO: Login successful
+2024-05-05 03:09:56,912 INFO: Connected to server, response: pong
+2024-05-05 03:09:56,913 INFO: Agent id: 933837
+2024-05-05 03:09:56,961 INFO: Login successful
+2024-05-05 03:10:00,014 INFO: Connected to server, response: pong
+2024-05-05 03:10:00,014 INFO: Agent id: 933837
+2024-05-05 03:10:00,055 INFO: Login successful
+2024-05-05 03:10:02,021 INFO: New process found: DOSBox.exe
+2024-05-05 03:10:02,022 INFO: New process found: smartscreen.exe
+2024-05-05 03:10:03,091 INFO: Connected to server, response: pong
+2024-05-05 03:10:03,092 INFO: Agent id: 933837
+2024-05-05 03:10:03,111 INFO: Login successful
+2024-05-05 03:10:06,144 INFO: Connected to server, response: pong
+2024-05-05 03:10:06,144 INFO: Agent id: 933837
+2024-05-05 03:10:06,176 INFO: Login successful
+2024-05-05 03:10:09,240 INFO: Connected to server, response: pong
+2024-05-05 03:10:09,241 INFO: Agent id: 933837
+2024-05-05 03:10:09,312 INFO: Login successful
+2024-05-05 03:10:12,339 INFO: Connected to server, response: pong
+2024-05-05 03:10:12,340 INFO: Agent id: 933837
+2024-05-05 03:10:12,389 INFO: Login successful
+2024-05-05 03:10:15,443 INFO: Connected to server, response: pong
+2024-05-05 03:10:15,444 INFO: Agent id: 933837
+2024-05-05 03:10:15,460 INFO: Login successful
+2024-05-05 03:10:18,495 INFO: Connected to server, response: pong
+2024-05-05 03:10:18,496 INFO: Agent id: 933837
+2024-05-05 03:10:18,512 INFO: Login successful
+2024-05-05 03:10:21,547 INFO: Connected to server, response: pong
+2024-05-05 03:10:21,547 INFO: Agent id: 933837
+2024-05-05 03:10:21,551 INFO: Login successful
+2024-05-05 03:10:24,579 INFO: Connected to server, response: pong
+2024-05-05 03:10:24,580 INFO: Agent id: 933837
+2024-05-05 03:10:24,628 INFO: Login successful
+2024-05-05 03:10:27,690 INFO: Connected to server, response: pong
+2024-05-05 03:10:27,690 INFO: Agent id: 933837
+2024-05-05 03:10:27,706 INFO: Login successful
+2024-05-05 03:10:30,747 INFO: Connected to server, response: pong
+2024-05-05 03:10:30,747 INFO: Agent id: 933837
+2024-05-05 03:10:30,763 INFO: Login successful
+2024-05-05 03:10:33,811 INFO: Connected to server, response: pong
+2024-05-05 03:10:33,811 INFO: Agent id: 933837
+2024-05-05 03:10:33,859 INFO: Login successful
+2024-05-05 03:10:36,910 INFO: Connected to server, response: pong
+2024-05-05 03:10:36,911 INFO: Agent id: 933837
+2024-05-05 03:10:36,947 INFO: Login successful
+2024-05-05 03:10:39,992 INFO: Connected to server, response: pong
+2024-05-05 03:10:39,993 INFO: Agent id: 933837
+2024-05-05 03:10:40,000 INFO: Login successful
+2024-05-05 03:10:43,043 INFO: Connected to server, response: pong
+2024-05-05 03:10:43,043 INFO: Agent id: 933837
+2024-05-05 03:10:43,059 INFO: Login successful
+2024-05-05 03:10:46,100 INFO: Connected to server, response: pong
+2024-05-05 03:10:46,100 INFO: Agent id: 933837
+2024-05-05 03:10:46,134 INFO: Login successful
+2024-05-05 03:10:49,166 INFO: Connected to server, response: pong
+2024-05-05 03:10:49,166 INFO: Agent id: 933837
+2024-05-05 03:10:49,200 INFO: Login successful
+2024-05-05 03:10:52,254 INFO: Connected to server, response: pong
+2024-05-05 03:10:52,254 INFO: Agent id: 933837
+2024-05-05 03:10:52,270 INFO: Login successful
+2024-05-05 03:10:55,315 INFO: Connected to server, response: pong
+2024-05-05 03:10:55,316 INFO: Agent id: 933837
+2024-05-05 03:10:55,348 INFO: Login successful
+2024-05-05 03:10:58,393 INFO: Connected to server, response: pong
+2024-05-05 03:10:58,394 INFO: Agent id: 933837
+2024-05-05 03:10:58,410 INFO: Login successful
+2024-05-05 03:11:01,462 INFO: Connected to server, response: pong
+2024-05-05 03:11:01,463 INFO: Agent id: 933837
+2024-05-05 03:11:01,495 INFO: Login successful
+2024-05-05 03:11:04,525 INFO: Connected to server, response: pong
+2024-05-05 03:11:04,526 INFO: Agent id: 933837
+2024-05-05 03:11:04,530 INFO: Login successful
+2024-05-05 03:11:07,575 INFO: Connected to server, response: pong
+2024-05-05 03:11:07,576 INFO: Agent id: 933837
+2024-05-05 03:11:07,592 INFO: Login successful
+2024-05-05 03:11:10,616 INFO: Connected to server, response: pong
+2024-05-05 03:11:10,616 INFO: Agent id: 933837
+2024-05-05 03:11:10,649 INFO: Login successful
+2024-05-05 03:11:13,694 INFO: Connected to server, response: pong
+2024-05-05 03:11:13,694 INFO: Agent id: 933837
+2024-05-05 03:11:13,699 INFO: Login successful
+2024-05-05 03:11:16,734 INFO: Connected to server, response: pong
+2024-05-05 03:11:16,735 INFO: Agent id: 933837
+2024-05-05 03:11:16,783 INFO: Login successful
+2024-05-05 03:11:19,808 INFO: Connected to server, response: pong
+2024-05-05 03:11:19,809 INFO: Agent id: 933837
+2024-05-05 03:11:19,857 INFO: Login successful
+2024-05-05 03:11:22,886 INFO: Connected to server, response: pong
+2024-05-05 03:11:22,886 INFO: Agent id: 933837
+2024-05-05 03:11:22,890 INFO: Login successful
+2024-05-05 03:11:25,910 INFO: Connected to server, response: pong
+2024-05-05 03:11:25,910 INFO: Agent id: 933837
+2024-05-05 03:11:25,945 INFO: Login successful
+2024-05-05 03:11:28,970 INFO: Connected to server, response: pong
+2024-05-05 03:11:28,971 INFO: Agent id: 933837
+2024-05-05 03:11:29,004 INFO: Login successful
+2024-05-05 03:11:32,058 INFO: Connected to server, response: pong
+2024-05-05 03:11:32,059 INFO: Agent id: 933837
+2024-05-05 03:11:32,074 INFO: Login successful
+2024-05-05 03:11:35,102 INFO: Connected to server, response: pong
+2024-05-05 03:11:35,103 INFO: Agent id: 933837
+2024-05-05 03:11:35,150 INFO: Login successful
+2024-05-05 03:11:38,194 INFO: Connected to server, response: pong
+2024-05-05 03:11:38,194 INFO: Agent id: 933837
+2024-05-05 03:11:38,227 INFO: Login successful
+2024-05-05 03:11:41,274 INFO: Connected to server, response: pong
+2024-05-05 03:11:41,275 INFO: Agent id: 933837
+2024-05-05 03:11:41,309 INFO: Login successful
+2024-05-05 03:11:44,343 INFO: Connected to server, response: pong
+2024-05-05 03:11:44,344 INFO: Agent id: 933837
+2024-05-05 03:11:44,376 INFO: Login successful
+2024-05-05 03:11:47,405 INFO: Connected to server, response: pong
+2024-05-05 03:11:47,406 INFO: Agent id: 933837
+2024-05-05 03:11:47,454 INFO: Login successful
+2024-05-05 03:11:50,499 INFO: Connected to server, response: pong
+2024-05-05 03:11:50,500 INFO: Agent id: 933837
+2024-05-05 03:11:50,531 INFO: Login successful
+2024-05-05 03:11:53,567 INFO: Connected to server, response: pong
+2024-05-05 03:11:53,568 INFO: Agent id: 933837
+2024-05-05 03:11:53,584 INFO: Login successful
+2024-05-05 03:11:56,634 INFO: Connected to server, response: pong
+2024-05-05 03:11:56,635 INFO: Agent id: 933837
+2024-05-05 03:11:56,649 INFO: Login successful
+2024-05-05 03:11:59,672 INFO: Connected to server, response: pong
+2024-05-05 03:11:59,673 INFO: Agent id: 933837
+2024-05-05 03:11:59,703 INFO: Login successful
+2024-05-05 03:12:02,758 INFO: Connected to server, response: pong
+2024-05-05 03:12:02,759 INFO: Agent id: 933837
+2024-05-05 03:12:02,775 INFO: Login successful
+2024-05-05 03:12:05,808 INFO: Connected to server, response: pong
+2024-05-05 03:12:05,809 INFO: Agent id: 933837
+2024-05-05 03:12:05,825 INFO: Login successful
+2024-05-05 03:12:08,862 INFO: Connected to server, response: pong
+2024-05-05 03:12:08,863 INFO: Agent id: 933837
+2024-05-05 03:12:08,897 INFO: Login successful
+2024-05-05 03:12:11,943 INFO: Connected to server, response: pong
+2024-05-05 03:12:11,944 INFO: Agent id: 933837
+2024-05-05 03:12:11,975 INFO: Login successful
+2024-05-05 03:12:15,031 INFO: Connected to server, response: pong
+2024-05-05 03:12:15,031 INFO: Agent id: 933837
+2024-05-05 03:12:15,079 INFO: Login successful
+2024-05-05 03:12:18,142 INFO: Connected to server, response: pong
+2024-05-05 03:12:18,143 INFO: Agent id: 933837
+2024-05-05 03:12:18,147 INFO: Login successful
+2024-05-05 03:12:21,210 INFO: Connected to server, response: pong
+2024-05-05 03:12:21,211 INFO: Agent id: 933837
+2024-05-05 03:12:21,240 INFO: Login successful
+2024-05-05 03:12:24,280 INFO: Connected to server, response: pong
+2024-05-05 03:12:24,280 INFO: Agent id: 933837
+2024-05-05 03:12:24,298 INFO: Login successful
+2024-05-05 03:12:27,340 INFO: Connected to server, response: pong
+2024-05-05 03:12:27,340 INFO: Agent id: 933837
+2024-05-05 03:12:27,372 INFO: Login successful
+2024-05-05 03:12:47,682 INFO: New process found: backgroundTaskHost.exe
+2024-05-05 03:13:06,639 ERROR: Error connecting to server
+2024-05-05 03:13:09,648 INFO: Connecting to server...
+2024-05-05 03:13:09,648 ERROR: Error connecting to server
+2024-05-05 03:13:12,662 INFO: Connecting to server...
+2024-05-05 03:13:12,662 ERROR: Error connecting to server
+2024-05-05 03:13:15,665 INFO: Connecting to server...
+2024-05-05 03:13:15,665 ERROR: Error connecting to server
+2024-05-05 03:13:17,839 INFO: New process found: MoUsoCoreWorker.exe
+2024-05-05 03:13:18,669 INFO: Connecting to server...
+2024-05-05 03:13:18,669 ERROR: Error connecting to server
+2024-05-05 03:13:21,681 INFO: Connecting to server...
+2024-05-05 03:13:21,681 ERROR: Error connecting to server
+2024-05-05 03:13:24,690 INFO: Connecting to server...
+2024-05-05 03:13:24,690 ERROR: Error connecting to server
+2024-05-05 03:13:27,702 INFO: Connecting to server...
+2024-05-05 03:13:27,702 ERROR: Error connecting to server
+2024-05-05 03:13:29,633 INFO: Stopping service -------------------------------------------------
+

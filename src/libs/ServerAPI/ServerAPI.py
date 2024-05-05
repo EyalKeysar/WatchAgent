@@ -5,37 +5,6 @@ import json
 from .s_socket import *
 from .shared.SharedDTO import *
 
-"""
-For reference, this is client side code
-
-import socket
-import s_socket
-
-def start_secure_client(host, port):
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect((host, port))
-    print(f"Connected to {host}:{port}")
-
-    tls_protocol = s_socket.TLSProtocol(client_socket)
-    tls_protocol.client_handshake()
-
-    while True:
-        message = input("Enter message to send (type 'quit' to exit): ")
-        if message == 'quit':
-            break
-        tls_protocol.send(message)
-        decrypted_data = tls_protocol.receive()
-        print("Received:", decrypted_data)
-
-    s_socket.close(client_socket)
-
-if __name__ == "__main__":
-    HOST = '127.0.0.1'
-    PORT = 12345
-    start_secure_client(HOST, PORT)
-"""
-
-
 class ServerAPI:
     '''
         This class is used by the clients to communicate with the server.
@@ -58,12 +27,22 @@ class ServerAPI:
                 self.is_connected = False
                 return str(e)
         return wrapper
+    
+    # authentication needed decorator
+    def authentication_needed(func):
+        def wrapper(self, *args, **kwargs):
+            if not self.is_authenticated:
+                raise Exception("Not authenticated")
+            return func(self, *args, **kwargs)
+        return wrapper
+
 
     def __init__(self):
         self.host = SERVER_IP
         self.port = SERVER_PORT
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.is_connected = False
+        self.is_authenticated = False
         
     @connection_exception_catcher
     def connect(self):
@@ -106,8 +85,15 @@ class ServerAPI:
             This method is used to login to the server.
         '''
         self.tls_protocol.send(self.build_request("auth", "login", email, password))
-        return self.tls_protocol.receive()
-    
+        response = self.tls_protocol.receive()
+
+        if response == "True":
+            self.is_authenticated = True
+            return True
+        else:
+            return response
+
+
     @connection_exception_catcher
     @connection_needed
     def signup(self, email, password, username):
@@ -115,8 +101,15 @@ class ServerAPI:
             This method is used to signup to the server.
         '''
         self.tls_protocol.send(self.build_request("auth", "signup", email, password, username))
-        return self.tls_protocol.receive()
-    
+        response = self.tls_protocol.receive()
+
+        if response == "True":
+            self.is_authenticated = True
+            return True
+        else:
+            return response
+
+
     @connection_exception_catcher
     @connection_needed
     def new_agent_request(self, mac_address):
@@ -124,11 +117,29 @@ class ServerAPI:
             This method is used to send a new agent request to the server.
         '''
         self.tls_protocol.send(self.build_request("auth", "new_agent", mac_address))
-        return self.tls_protocol.receive()
+        response = self.tls_protocol.receive()
+        auth_str = response.split(ARGS_SEPERATOR)
+        return auth_str
+        
+
+    @connection_exception_catcher
+    @connection_needed
+    def login_agent(self, auth_str):
+        '''
+            This method is used to login as an agent to the server.
+        '''
+        self.tls_protocol.send(self.build_request("auth", "login_agent", auth_str))
+        response = self.tls_protocol.receive()
+        if "True" in str(response):
+            self.is_authenticated = True
+            return True
+        else:
+            return response
 # ---------------------------------------------------------------------------------------------------------------------
 
 # RESTRICTIONS MANAGEMENT --------------------------------------------------------------------------------------------
 
+    @authentication_needed
     @connection_exception_catcher
     @connection_needed
     def add_restriction(self, child_name, program_name, start_time, end_time, allowed_time, time_span):
@@ -138,6 +149,7 @@ class ServerAPI:
         self.tls_protocol.send(self.build_request("restrict", "add_restriction", child_name, program_name, start_time, end_time, allowed_time, time_span))
         return self.tls_protocol.receive()
 
+    @authentication_needed
     @connection_exception_catcher
     @connection_needed
     def remove_restriction(self, child_name, program_name):
@@ -147,6 +159,15 @@ class ServerAPI:
         self.tls_protocol.send(self.build_request("restrict", "remove_restriction", child_name, program_name))
         return self.tls_protocol.receive()
 
+    @authentication_needed
+    @connection_exception_catcher
+    @connection_needed
+    def update_known_programs(self, programs_list):
+        '''
+            This method is used to add a known program to the server.
+        '''
+        self.tls_protocol.send(self.build_request("restrict", "update_known_programs", StringListSerializer.serialize(programs_list)))
+        return self.tls_protocol.receive()
 
 # FETCHING INFORMATION -----------------------------------------------------------------------------------------------
     @connection_exception_catcher
@@ -158,6 +179,7 @@ class ServerAPI:
         self.tls_protocol.send(self.build_request("fetch", "parents"))
         return self.tls_protocol.receive()
 
+    @authentication_needed
     @connection_exception_catcher
     @connection_needed
     def get_statistics(self):
@@ -167,6 +189,7 @@ class ServerAPI:
         self.tls_protocol.send(self.build_request("fetch", "statistics"))
         return self.tls_protocol.receive()
     
+    @authentication_needed
     @connection_exception_catcher
     @connection_needed
     def get_restrictions(self, child_name):
@@ -180,6 +203,7 @@ class ServerAPI:
         print("respond (json res)" + respond)
         return RestrictionListSerializer.deserialize(respond)
 
+    @authentication_needed
     @connection_exception_catcher
     @connection_needed
     def get_children(self):
@@ -193,6 +217,7 @@ class ServerAPI:
         self.children = ChildListSerializer.deserialize(respond)
         return self.children
     
+    @authentication_needed
     @connection_exception_catcher
     @connection_needed
     def get_programs(self, child_name):
@@ -200,13 +225,15 @@ class ServerAPI:
             This method is used to get the available programs from the server.
         '''
         self.tls_protocol.send(self.build_request("fetch", "programs", child_name))
-        return self.tls_protocol.receive()
+        return StringListSerializer.deserialize(self.tls_protocol.receive())
         
 
 # ---------------------------------------------------------------------------------------------------------------------
 
 
+
 # CHILDREN MANAGEMENT -----------------------------------------------------------------------------------------------
+    @authentication_needed
     @connection_exception_catcher
     @connection_needed
     def confirm_agent(self, auth_str, child_name):

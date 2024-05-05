@@ -28,7 +28,7 @@ class AppService(win32serviceutil.ServiceFramework):
         self.is_alive.set()
         log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'WatchAgentService.log')
         logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')  # Configure logging
-        logging.info("\nService initialized -------------------------------------------------")
+        logging.info("\nService initialized -------------------------------")
         
 
     def first_run(self):
@@ -59,7 +59,9 @@ class AppService(win32serviceutil.ServiceFramework):
             return
         logging.info("ServerAPI initialized")
         Utils.check_connection(serverapi, logging)
-        # db_updater = DBUpdater(db_handler, serverapi, logging)
+        db_updater = DBUpdater(db_handler, serverapi, logging)
+        db_updater_thread = threading.Thread(target=db_updater.start)
+        db_updater_thread.start()
 
         logging.info("DBUpdater initialized")
 
@@ -103,6 +105,9 @@ class Utils:
     @staticmethod
     def update_known_processes():
         while True:
+            if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'known_processes.txt')):
+                with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'known_processes.txt'), 'w') as f:
+                    f.write('')
             known_processes_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'known_processes.txt')
             known_processes_list = []
             with open(known_processes_file, 'r') as f:
@@ -114,16 +119,14 @@ class Utils:
                         logging.info(f"New process found: {proc.name()}")
                         with open(known_processes_file, 'a') as f:
                             f.write(proc.name() + '\n')
-                except psutil.NoSuchProcess:
-                    pass
+                except Exception as e:
+                    logging.error("Error updating known processes: %s", e)
             time.sleep(5)
 
     @staticmethod
     def check_connection(server_api, logger):
-        logger.info("Checking connection to server")
         try:
             if(server_api.is_connected):
-                logger.info("Already connected to server, getting info...")
                 response = server_api.ping()
             else:
                 logger.info("Connecting to server...")
@@ -131,6 +134,7 @@ class Utils:
                 response = server_api.ping()
             if server_api.is_connected and response == "pong":
                 logging.info("Connected to server, response: %s", response)
+                Utils.login(server_api, logger)
                 return True
             else:
                 logging.error("Error connecting to server")
@@ -138,6 +142,51 @@ class Utils:
         except Exception as e:
             logging.error("Error connecting to server: %s", e)
             return False
+        
+    @staticmethod
+    def login(server_api, logger):
+        try:
+            auth_str = Utils.get_agent_id(server_api, logger)
+            if auth_str:
+                response = server_api.login_agent(auth_str)
+                if "True" in str(response):
+                    logger.info("Login successful")
+                else:
+                    logger.error("Login failed respond: %s", response)
+            else:
+                logger.error("Agent id not found")
+        except Exception as e:
+            logger.error("Error logging in: %s", e)
+
+    @staticmethod
+    def get_agent_id(server_api, logger):
+        # Read the agent id from the file
+        #check if the agent id exists
+        agent_id = None
+        if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'agent_id.txt')):
+            logger.info("Agent id not found, generating new agent id")
+            Utils.set_agent_id(server_api, logger)
+        else:
+            with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'agent_id.txt'), "r") as file:
+                agent_id = file.read().strip()
+        logger.info(f"Agent id: {agent_id}")
+        return agent_id
+    
+    @staticmethod
+    def set_agent_id(server_api, logger):
+        # Generate a new agent id
+        mac_address = getmac.get_mac_address()
+        agent_id = server_api.new_agent_request(mac_address)
+        logger.info(f"Generated agent id: {agent_id} --")
+
+        # Write the agent id to the 
+        try:
+            with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'agent_id.txt'), "w") as file:
+                file.write(agent_id[0])
+        except Exception as e:
+            logger.error("Error writing agent id to file: %s", e)
+            return False
+
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:
