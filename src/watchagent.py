@@ -16,6 +16,7 @@ from proccesses_killer import ProcessesKiller
 from db_handler.db_handler import DBHandler
 from db_updater import DBUpdater
 from libs.ServerAPI import ServerAPI
+from libs.ServerAPI.shared.SharedDTO import RestrictionListSerializer
 
 
 class AppService(win32serviceutil.ServiceFramework):
@@ -58,8 +59,9 @@ class AppService(win32serviceutil.ServiceFramework):
             logging.error("Error initializing ServerAPI: %s", e)
             return
         logging.info("ServerAPI initialized")
-        Utils.check_connection(serverapi, logging)
-        db_updater = DBUpdater(db_handler, serverapi, logging)
+        
+        
+        db_updater = DBUpdater(db_handler, serverapi, RestrictionListSerializer, logging)
         db_updater_thread = threading.Thread(target=db_updater.start)
         db_updater_thread.start()
 
@@ -81,6 +83,8 @@ class AppService(win32serviceutil.ServiceFramework):
 
         while self.is_alive.is_set():
             logging.info("ML is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
+            if serverapi.is_connected and not serverapi.is_authenticated:
+                Utils.login(serverapi, logging)
             if not serverapi.is_connected:
                 Utils.check_connection(serverapi, logging)
 
@@ -193,6 +197,7 @@ class Utils:
         except Exception as e:
             logger.error("Error writing agent id to file: %s", e)
             return False
+        
 
 
 if __name__ == '__main__':

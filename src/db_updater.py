@@ -2,10 +2,11 @@ from libs.ServerAPI import ServerAPI
 import time
 import os
 class DBUpdater:
-    def __init__(self, db_repo, server_api, logger):
+    def __init__(self, db_repo, server_api, restriction_list_serializer, logger):
         self.logger = logger
         self.db_repo = db_repo
         self.server_api = server_api
+        self.restriction_list_serializer = restriction_list_serializer
 
     def start(self):
         self.logger.info("DBUpdater initialized --")
@@ -47,6 +48,7 @@ class DBUpdater:
     def get_update_restrictions(self):
         try:
             new_restriction_list = self.server_api.agent_get_restrictions()
+            self.restriction_list_serializer.deserialize(new_restriction_list)
             if new_restriction_list:
                 self.logger.info(f"Restrictions updated: {new_restriction_list}")
                 return new_restriction_list
