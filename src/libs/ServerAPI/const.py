@@ -1,4 +1,4 @@
-SERVER_IP = '10.0.0.18'
+SERVER_IP = 'localhost'
 SERVER_PORT = 9898
 
 
