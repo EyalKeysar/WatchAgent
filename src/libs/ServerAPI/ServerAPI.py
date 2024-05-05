@@ -176,9 +176,8 @@ class ServerAPI:
         '''
             This method is used to get the restrictions from the server.
         '''
-        # self.tls_protocol.send(self.build_request("restrict", "get_restrictions"))
-        # return self.tls_protocol.receive()
-        return None
+        self.tls_protocol.send(self.build_request("fetch", "agent_restrictions"))
+        return self.tls_protocol.receive()
 
 # FETCHING INFORMATION -----------------------------------------------------------------------------------------------
     @connection_exception_catcher

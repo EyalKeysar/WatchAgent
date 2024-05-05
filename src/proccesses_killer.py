@@ -22,4 +22,4 @@ class ProcessesKiller:
                         self.logger.info(f"Killed {proc.name()}")
                 except psutil.NoSuchProcess:
                     pass
-            time.sleep(5)
+            time.sleep(4)
