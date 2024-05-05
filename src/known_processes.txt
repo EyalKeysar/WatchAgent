@@ -245,3 +245,8 @@ GameBarPresenceWriter.exe
 Solitaire.exe
 git.exe
 sppsvc.exe
+inno_updater.exe
+SearchProtocolHost.exe
+LenovoVantage-(SmartDisplayAddin).exe
+emu8086.exe
+LenovoVantage-(LenovoSecurityAddin).exe

@@ -47,6 +47,10 @@ class DBHandler:
         self.cursor.execute("SELECT * FROM restrictions")
         return self.cursor.fetchall()
     
+    def get_restriction(self, restriction_id):
+        self.cursor.execute("SELECT * FROM restrictions WHERE id=?", (restriction_id,))
+        return self.cursor.fetchone()
+    
     def delete_restriction(self, id):
         self.logger.info(f"Deleting restriction with id: {id}")
         self.cursor.execute("DELETE FROM restrictions WHERE id=?", (id,))

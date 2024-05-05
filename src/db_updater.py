@@ -46,11 +46,16 @@ class DBUpdater:
     
     def get_update_restrictions(self):
         try:
-            new_restriction_list = self.server_api.update_restrictions()
+            new_restriction_list = self.server_api.agent_get_restrictions()
+            if new_restriction_list:
+                self.logger.info(f"Restrictions updated: {new_restriction_list}")
+                return new_restriction_list
+            else:
+                return []    
+            
         except Exception as e:
             self.logger.error("Error updating restrictions to server: %s", e)
-
-
+            return []
 
 
     def update_restrictions(self, new_restriction_list):
