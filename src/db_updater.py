@@ -50,6 +50,9 @@ class DBUpdater:
             return []
     
     def get_update_restrictions(self):
+        if not self.server_api.is_authenticated or not self.server_api.is_connected:
+            self.logger.info("Not authenticated or connected")
+            return []
         try:
             new_restriction_list = self.server_api.agent_get_restrictions()
             if new_restriction_list:  # Check if the response is not empty
@@ -69,6 +72,9 @@ class DBUpdater:
 
 
     def update_restrictions(self, new_restriction_list):
+        if not self.server_api.is_authenticated or not self.server_api.is_connected:
+            self.logger.info("Not authenticated or connected")
+            return
         try:
             self.logger.info(f"Updating restrictions: {new_restriction_list}")
             for restriction in new_restriction_list:
