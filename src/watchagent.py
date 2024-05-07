@@ -18,27 +18,6 @@ from db_updater import DBUpdater
 from libs.ServerAPI import ServerAPI
 from libs.ServerAPI.shared.SharedDTO import RestrictionListSerializer
 
-
-class AppService(win32serviceutil.ServiceFramework):
-    _svc_name_ = 'WatchAgentService'
-    _svc_display_name_ = 'WatchAgent'
-
-import win32serviceutil
-import win32security
-import ntsecuritycon
-import winerror
-import win32api
-import win32service
-import win32event
-import win32con
-import threading
-import logging
-import os
-import sys
-import time
-import win32process
-import win32api
-import ctypes
 from ctypes import *
 
 class AppService(win32serviceutil.ServiceFramework):
