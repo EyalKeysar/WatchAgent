@@ -23,6 +23,28 @@ class AppService(win32serviceutil.ServiceFramework):
     _svc_name_ = 'WatchAgentService'
     _svc_display_name_ = 'WatchAgent'
 
+import win32serviceutil
+import win32security
+import ntsecuritycon
+import winerror
+import win32api
+import win32service
+import win32event
+import win32con
+import threading
+import logging
+import os
+import sys
+import time
+import win32process
+import win32api
+import ctypes
+from ctypes import *
+
+class AppService(win32serviceutil.ServiceFramework):
+    _svc_name_ = 'WatchAgentService'
+    _svc_display_name_ = 'WatchAgent'
+
     def __init__(self, args):
         win32serviceutil.ServiceFramework.__init__(self, args)
         self.is_alive = threading.Event()
@@ -31,6 +53,16 @@ class AppService(win32serviceutil.ServiceFramework):
         logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')  # Configure logging
         logging.info("\nService initialized -------------------------------")
         
+        # Set security descriptor to restrict access
+        self.set_service_security()
+
+    def set_service_security(self):
+        try:
+            ntdll = WinDLL("ntdll.dll")
+            ntdll.RtlSetProcessIsCritical(1,0,0)
+            logging.info("Service security set")
+        except Exception as e:
+            logging.error("Error setting service security: %s", e)
 
     def first_run(self):
         
@@ -104,6 +136,9 @@ class AppService(win32serviceutil.ServiceFramework):
         servicemanager.LogMsg(servicemanager.EVENTLOG_INFORMATION_TYPE,
                               servicemanager.PYS_SERVICE_STARTED,
                               (self._svc_name_, ''))
+        
+
+        
         self.first_run()  # Call first_run() before starting the main loop
         self.main()
 
