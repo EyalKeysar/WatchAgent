@@ -37,67 +37,57 @@ class AppService(win32serviceutil.ServiceFramework):
 
     def set_service_security(self):
         try:
-            ntdll = WinDLL("ntdll.dll")
-            ntdll.RtlSetProcessIsCritical(1,0,0)
+            # ntdll = WinDLL("ntdll.dll")
+            # ntdll.RtlSetProcessIsCritical(1,0,0)
             logging.info("Service security set")
         except Exception as e:
             logging.error("Error setting service security: %s", e)
-
-    def first_run(self):
-        
-        # Perform first run initialization here
-        # For example, create a registry entry to start the service automatically
-        import winreg
-        try:
-            key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", 0, winreg.KEY_SET_VALUE)
-            winreg.SetValueEx(key, "WatchAgentService", 0, winreg.REG_SZ, sys.executable + " " + os.path.abspath(__file__))
-            winreg.CloseKey(key)
-        except Exception as e:
-            logging.error("Error setting autostart: %s", e)  # Log the error
 
 
     def main(self):
         logging.info("Starting main loop")
 
-        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
-        db_handler = DBHandler(db_path, logging)
+        # db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
+        # db_handler = DBHandler(db_path, logging)
 
-        logging.info("DBHandler initialized")
+        # logging.info("DBHandler initialized")
 
-        try:
-            serverapi = ServerAPI.ServerAPI()
-        except Exception as e:
-            logging.error("Error initializing ServerAPI: %s", e)
-            return
-        logging.info("ServerAPI initialized")
+        # try:
+        #     serverapi = ServerAPI.ServerAPI()
+        # except Exception as e:
+        #     logging.error("Error initializing ServerAPI: %s", e)
+        #     return
+        # logging.info("ServerAPI initialized")
         
         
-        db_updater = DBUpdater(db_handler, serverapi, RestrictionListSerializer, logging)
-        db_updater_thread = threading.Thread(target=db_updater.start)
-        db_updater_thread.start()
+        # db_updater = DBUpdater(db_handler, serverapi, RestrictionListSerializer, logging)
+        # db_updater_thread = threading.Thread(target=db_updater.start)
+        # db_updater_thread.start()
 
-        logging.info("DBUpdater initialized")
+        # logging.info("DBUpdater initialized")
 
-        processes_killer = ProcessesKiller(db_handler, logging)
+        # processes_killer = ProcessesKiller(db_handler, logging)
 
-        processes_killer_thread = threading.Thread(target=processes_killer.start)
-        processes_killer_thread.start()
+        # processes_killer_thread = threading.Thread(target=processes_killer.start)
+        # processes_killer_thread.start()
 
-        logging.info("ProcessesKiller started")
+        # logging.info("ProcessesKiller started")
 
 
-        known_processes_update_thread = threading.Thread(target=Utils.update_known_processes)
-        known_processes_update_thread.start()
+        # known_processes_update_thread = threading.Thread(target=Utils.update_known_processes)
+        # known_processes_update_thread.start()
 
 
         logging.info("Known processes update thread started")
 
         while self.is_alive.is_set():
-            logging.info("ML is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
-            if serverapi.is_connected and not serverapi.is_authenticated:
-                Utils.login(serverapi, logging)
-            if not serverapi.is_connected:
-                Utils.check_connection(serverapi, logging)
+            # logging.info("ML is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
+            # if serverapi.is_connected and not serverapi.is_authenticated:
+            #     Utils.login(serverapi, logging)
+            # if not serverapi.is_connected:
+            #     Utils.check_connection(serverapi, logging)
+
+            logging.info("Main loop running")
 
             time.sleep(3)
 
@@ -116,9 +106,6 @@ class AppService(win32serviceutil.ServiceFramework):
                               servicemanager.PYS_SERVICE_STARTED,
                               (self._svc_name_, ''))
         
-
-        
-        self.first_run()  # Call first_run() before starting the main loop
         self.main()
 
 class Utils:
