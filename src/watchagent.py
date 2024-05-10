@@ -17,6 +17,7 @@ from db_handler.db_handler import DBHandler
 from db_updater import DBUpdater
 from libs.ServerAPI import ServerAPI
 from libs.ServerAPI.shared.SharedDTO import RestrictionListSerializer
+from screen_share import share_screen
 
 from ctypes import *
 
@@ -47,45 +48,49 @@ class AppService(win32serviceutil.ServiceFramework):
     def main(self):
         logging.info("Starting main loop")
 
-        # db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
-        # db_handler = DBHandler(db_path, logging)
+        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
+        db_handler = DBHandler(db_path, logging)
 
-        # logging.info("DBHandler initialized")
+        logging.info("DBHandler initialized")
 
-        # try:
-        #     serverapi = ServerAPI.ServerAPI()
-        # except Exception as e:
-        #     logging.error("Error initializing ServerAPI: %s", e)
-        #     return
-        # logging.info("ServerAPI initialized")
+        try:
+            serverapi = ServerAPI.ServerAPI()
+        except Exception as e:
+            logging.error("Error initializing ServerAPI: %s", e)
+            return
+        logging.info("ServerAPI initialized")
         
+
+        share_screen_thread = threading.Thread(target=share_screen, args=(serverapi, logging))
+        share_screen_thread.start()
         
-        # db_updater = DBUpdater(db_handler, serverapi, RestrictionListSerializer, logging)
-        # db_updater_thread = threading.Thread(target=db_updater.start)
-        # db_updater_thread.start()
+        db_updater = DBUpdater(db_handler, serverapi, RestrictionListSerializer, logging)
+        db_updater_thread = threading.Thread(target=db_updater.start)
+        db_updater_thread.start()
 
-        # logging.info("DBUpdater initialized")
+        logging.info("DBUpdater initialized")
 
-        # processes_killer = ProcessesKiller(db_handler, logging)
+        processes_killer = ProcessesKiller(db_handler, logging)
 
-        # processes_killer_thread = threading.Thread(target=processes_killer.start)
-        # processes_killer_thread.start()
+        processes_killer_thread = threading.Thread(target=processes_killer.start)
+        processes_killer_thread.start()
 
-        # logging.info("ProcessesKiller started")
+        logging.info("ProcessesKiller started")
 
 
-        # known_processes_update_thread = threading.Thread(target=Utils.update_known_processes)
-        # known_processes_update_thread.start()
+        known_processes_update_thread = threading.Thread(target=Utils.update_known_processes)
+        known_processes_update_thread.start()
 
 
         logging.info("Known processes update thread started")
 
         while self.is_alive.is_set():
-            # logging.info("ML is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
-            # if serverapi.is_connected and not serverapi.is_authenticated:
-            #     Utils.login(serverapi, logging)
-            # if not serverapi.is_connected:
-            #     Utils.check_connection(serverapi, logging)
+            logging.info("ML is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
+            if serverapi.is_connected and not serverapi.is_authenticated:
+                Utils.login(serverapi, logging)
+            if not serverapi.is_connected:
+                logging.info("check connection")
+                Utils.check_connection(serverapi, logging)
 
             logging.info("Main loop running")
 
@@ -198,7 +203,6 @@ class Utils:
         except Exception as e:
             logger.error("Error writing agent id to file: %s", e)
             return False
-        
 
 
 if __name__ == '__main__':

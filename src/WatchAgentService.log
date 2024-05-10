@@ -1,33 +1,131 @@
-2024-05-08 22:42:00,234 INFO: 
+2024-05-10 10:54:54,856 INFO: 
 Service initialized -------------------------------
-2024-05-08 22:42:00,234 INFO: Service security set
-2024-05-08 22:42:00,234 INFO: Starting service
-2024-05-08 22:42:00,235 INFO: Starting main loop
-2024-05-08 22:42:00,235 INFO: Known processes update thread started
-2024-05-08 22:42:00,235 INFO: Main loop running
-2024-05-08 22:42:03,250 INFO: Main loop running
-2024-05-08 22:42:06,394 INFO: Main loop running
-2024-05-08 22:42:09,404 INFO: Main loop running
-2024-05-08 22:42:12,416 INFO: Main loop running
-2024-05-08 22:42:15,425 INFO: Main loop running
-2024-05-08 22:42:18,434 INFO: Main loop running
-2024-05-08 22:42:21,441 INFO: Main loop running
-2024-05-08 22:42:21,467 INFO: Stopping service -------------------------------------------------
+2024-05-10 10:54:54,856 INFO: Service security set
+2024-05-10 10:54:54,856 INFO: Starting service
+2024-05-10 10:54:54,857 INFO: Starting main loop
+2024-05-10 10:54:54,858 INFO: DBHandler initialized
+2024-05-10 10:54:54,859 INFO: ServerAPI initialized
+2024-05-10 10:54:54,859 INFO: DBUpdater initialized --
+2024-05-10 10:54:54,859 INFO: DBUpdater initialized
+2024-05-10 10:54:54,860 INFO: DBUpdater is running
+2024-05-10 10:54:54,860 INFO: is_authenticated: False, is_connected: False
+2024-05-10 10:54:54,860 INFO: Acquiring lock for get_restrictions
+2024-05-10 10:54:54,860 INFO: ProcessesKiller started
+2024-05-10 10:54:54,860 INFO: Lock acquired for get_restrictions
+2024-05-10 10:54:54,860 INFO: Lock released for get_restrictions
+2024-05-10 10:54:54,860 INFO: Kill list: ['Dolphin.exe']
+2024-05-10 10:54:54,878 INFO: Known processes update thread started
+2024-05-10 10:54:54,879 INFO: ML is_authenticated: False, is_connected: False
+2024-05-10 10:54:54,879 INFO: check connection
+2024-05-10 10:54:54,879 INFO: Connecting to server...
+2024-05-10 10:54:54,896 INFO: New process found: PhoneExperienceHost.exe
+2024-05-10 10:54:55,138 INFO: Connected to server, response: pong
+2024-05-10 10:54:55,139 INFO: Agent id: da4010
+2024-05-10 10:54:55,141 INFO: Login successful
+2024-05-10 10:54:55,141 INFO: Main loop running
+2024-05-10 10:54:55,373 INFO: Sharing screen
+2024-05-10 10:54:55,379 INFO: Screenshot taken
+2024-05-10 10:54:55,890 ERROR: Not connected/auth to server
+2024-05-10 10:54:58,152 INFO: ML is_authenticated: True, is_connected: False
+2024-05-10 10:54:58,152 INFO: check connection
+2024-05-10 10:54:58,152 INFO: Connecting to server...
+2024-05-10 10:54:58,152 ERROR: Error connecting to server, response: [WinError 10056] A connect request was made on an already connected socket
+2024-05-10 10:54:58,152 INFO: Main loop running
+2024-05-10 10:54:58,937 INFO: Acquiring lock for get_restrictions
+2024-05-10 10:54:58,937 INFO: Lock acquired for get_restrictions
+2024-05-10 10:54:58,937 INFO: Lock released for get_restrictions
+2024-05-10 10:54:58,937 INFO: Kill list: ['Dolphin.exe']
+2024-05-10 10:54:59,938 INFO: DBUpdater is running
+2024-05-10 10:54:59,938 INFO: is_authenticated: True, is_connected: False
+2024-05-10 10:55:01,222 INFO: ML is_authenticated: True, is_connected: False
+2024-05-10 10:55:01,222 INFO: check connection
+2024-05-10 10:55:01,223 INFO: Connecting to server...
+2024-05-10 10:55:01,223 ERROR: Error connecting to server, response: [WinError 10056] A connect request was made on an already connected socket
+2024-05-10 10:55:01,223 INFO: Main loop running
+2024-05-10 10:55:01,541 ERROR: Not connected/auth to server
+2024-05-10 10:55:03,032 INFO: Acquiring lock for get_restrictions
+2024-05-10 10:55:03,032 INFO: Lock acquired for get_restrictions
+2024-05-10 10:55:03,032 INFO: Lock released for get_restrictions
+2024-05-10 10:55:03,032 INFO: Kill list: ['Dolphin.exe']
+2024-05-10 10:55:04,309 INFO: ML is_authenticated: True, is_connected: False
+2024-05-10 10:55:04,310 INFO: check connection
+2024-05-10 10:55:04,310 INFO: Connecting to server...
+2024-05-10 10:55:04,310 ERROR: Error connecting to server, response: [WinError 10056] A connect request was made on an already connected socket
+2024-05-10 10:55:04,310 INFO: Main loop running
+2024-05-10 10:55:04,999 INFO: DBUpdater is running
+2024-05-10 10:55:04,999 INFO: is_authenticated: True, is_connected: False
+2024-05-10 10:55:07,050 ERROR: Not connected/auth to server
+2024-05-10 10:55:07,050 INFO: Acquiring lock for get_restrictions
+2024-05-10 10:55:07,050 INFO: Lock acquired for get_restrictions
+2024-05-10 10:55:07,050 INFO: Lock released for get_restrictions
+2024-05-10 10:55:07,050 INFO: Kill list: ['Dolphin.exe']
+2024-05-10 10:55:07,320 INFO: ML is_authenticated: True, is_connected: False
+2024-05-10 10:55:07,320 INFO: check connection
+2024-05-10 10:55:07,320 INFO: Connecting to server...
+2024-05-10 10:55:07,320 ERROR: Error connecting to server, response: [WinError 10056] A connect request was made on an already connected socket
+2024-05-10 10:55:07,320 INFO: Main loop running
+2024-05-10 10:55:10,004 INFO: DBUpdater is running
+2024-05-10 10:55:10,004 INFO: is_authenticated: True, is_connected: False
+2024-05-10 10:55:10,332 INFO: ML is_authenticated: True, is_connected: False
+2024-05-10 10:55:10,332 INFO: check connection
+2024-05-10 10:55:10,332 INFO: Connecting to server...
+2024-05-10 10:55:10,333 ERROR: Error connecting to server, response: [WinError 10056] A connect request was made on an already connected socket
+2024-05-10 10:55:10,333 INFO: Main loop running
+2024-05-10 10:55:11,068 INFO: Acquiring lock for get_restrictions
+2024-05-10 10:55:11,068 INFO: Lock acquired for get_restrictions
+2024-05-10 10:55:11,069 INFO: Lock released for get_restrictions
+2024-05-10 10:55:11,069 INFO: Kill list: ['Dolphin.exe']
+2024-05-10 10:55:12,564 ERROR: Not connected/auth to server
+2024-05-10 10:55:13,347 INFO: ML is_authenticated: True, is_connected: False
+2024-05-10 10:55:13,348 INFO: check connection
+2024-05-10 10:55:13,348 INFO: Connecting to server...
+2024-05-10 10:55:13,349 ERROR: Error connecting to server, response: [WinError 10056] A connect request was made on an already connected socket
+2024-05-10 10:55:13,349 INFO: Main loop running
+2024-05-10 10:55:15,009 INFO: DBUpdater is running
+2024-05-10 10:55:15,009 INFO: is_authenticated: True, is_connected: False
+2024-05-10 10:55:15,105 INFO: Acquiring lock for get_restrictions
+2024-05-10 10:55:15,105 INFO: Lock acquired for get_restrictions
+2024-05-10 10:55:15,105 INFO: Lock released for get_restrictions
+2024-05-10 10:55:15,105 INFO: Kill list: ['Dolphin.exe']
+2024-05-10 10:55:16,363 INFO: ML is_authenticated: True, is_connected: False
+2024-05-10 10:55:16,363 INFO: check connection
+2024-05-10 10:55:16,363 INFO: Connecting to server...
+2024-05-10 10:55:16,363 ERROR: Error connecting to server, response: [WinError 10056] A connect request was made on an already connected socket
+2024-05-10 10:55:16,364 INFO: Main loop running
+2024-05-10 10:55:18,065 ERROR: Not connected/auth to server
+2024-05-10 10:55:19,133 INFO: Acquiring lock for get_restrictions
+2024-05-10 10:55:19,133 INFO: Lock acquired for get_restrictions
+2024-05-10 10:55:19,133 INFO: Lock released for get_restrictions
+2024-05-10 10:55:19,133 INFO: Kill list: ['Dolphin.exe']
+2024-05-10 10:55:19,371 INFO: ML is_authenticated: True, is_connected: False
+2024-05-10 10:55:19,371 INFO: check connection
+2024-05-10 10:55:19,371 INFO: Connecting to server...
+2024-05-10 10:55:19,371 ERROR: Error connecting to server, response: [WinError 10056] A connect request was made on an already connected socket
+2024-05-10 10:55:19,371 INFO: Main loop running
+2024-05-10 10:55:20,016 INFO: DBUpdater is running
+2024-05-10 10:55:20,016 INFO: is_authenticated: True, is_connected: False
+2024-05-10 10:55:22,386 INFO: ML is_authenticated: True, is_connected: False
+2024-05-10 10:55:22,386 INFO: check connection
+2024-05-10 10:55:22,387 INFO: Connecting to server...
+2024-05-10 10:55:22,388 ERROR: Error connecting to server, response: [WinError 10056] A connect request was made on an already connected socket
+2024-05-10 10:55:22,389 INFO: Main loop running
+2024-05-10 10:55:22,803 INFO: Stopping service -------------------------------------------------
 
-2024-05-08 22:44:39,455 INFO: 
-Service initialized -------------------------------
-2024-05-08 22:44:39,455 INFO: Service security set
-2024-05-08 22:44:39,455 INFO: Starting service
-2024-05-08 22:44:39,456 INFO: Starting main loop
-2024-05-08 22:44:39,456 INFO: Known processes update thread started
-2024-05-08 22:44:39,456 INFO: Main loop running
-2024-05-08 22:44:42,472 INFO: Main loop running
-2024-05-08 22:44:45,527 INFO: Main loop running
-2024-05-08 22:44:48,537 INFO: Main loop running
-2024-05-08 22:44:51,541 INFO: Main loop running
-2024-05-08 22:44:54,554 INFO: Main loop running
-2024-05-08 22:44:57,563 INFO: Main loop running
-2024-05-08 22:45:00,578 INFO: Main loop running
-2024-05-08 22:45:03,584 INFO: Main loop running
-2024-05-08 22:45:05,201 INFO: Stopping service -------------------------------------------------
-
+2024-05-10 10:55:23,149 INFO: Acquiring lock for get_restrictions
+2024-05-10 10:55:23,149 INFO: Lock acquired for get_restrictions
+2024-05-10 10:55:23,149 INFO: Lock released for get_restrictions
+2024-05-10 10:55:23,149 INFO: Kill list: ['Dolphin.exe']
+2024-05-10 10:55:23,582 ERROR: Not connected/auth to server
+2024-05-10 10:55:25,027 INFO: DBUpdater is running
+2024-05-10 10:55:25,027 INFO: is_authenticated: True, is_connected: False
+2024-05-10 10:55:27,175 INFO: Acquiring lock for get_restrictions
+2024-05-10 10:55:27,176 INFO: Lock acquired for get_restrictions
+2024-05-10 10:55:27,176 INFO: Lock released for get_restrictions
+2024-05-10 10:55:27,176 INFO: Kill list: ['Dolphin.exe']
+2024-05-10 10:55:29,099 ERROR: Not connected/auth to server
+2024-05-10 10:55:30,034 INFO: DBUpdater is running
+2024-05-10 10:55:30,034 INFO: is_authenticated: True, is_connected: False
+2024-05-10 10:55:31,203 INFO: Acquiring lock for get_restrictions
+2024-05-10 10:55:31,203 INFO: Lock acquired for get_restrictions
+2024-05-10 10:55:31,203 INFO: Lock released for get_restrictions
+2024-05-10 10:55:31,203 INFO: Kill list: ['Dolphin.exe']
