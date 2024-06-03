@@ -1,25 +1,178 @@
-2024-06-03 12:13:12,772 INFO: 
+2024-06-03 18:52:17,948 INFO: 
 Service initialized -------------------------------
-2024-06-03 12:13:12,773 INFO: Service security set
-2024-06-03 12:13:12,774 INFO: Starting service
-2024-06-03 12:13:12,776 INFO: Starting main loop
-2024-06-03 12:13:12,777 INFO: ServerAPI initialized
-2024-06-03 12:13:12,777 INFO: Known processes update thread started
-2024-06-03 12:13:12,778 INFO: ML is_authenticated: False, is_connected: False
-2024-06-03 12:13:12,778 INFO: Taking screenshot
-2024-06-03 12:13:12,779 ERROR: Error taking screenshot: screen grab failed
-2024-06-03 12:13:12,779 INFO: Main loop running
-2024-06-03 12:13:15,797 INFO: ML is_authenticated: False, is_connected: False
-2024-06-03 12:13:15,797 INFO: Taking screenshot
-2024-06-03 12:13:15,799 ERROR: Error taking screenshot: screen grab failed
-2024-06-03 12:13:15,799 INFO: Main loop running
-2024-06-03 12:13:18,976 INFO: ML is_authenticated: False, is_connected: False
-2024-06-03 12:13:18,976 INFO: Taking screenshot
-2024-06-03 12:13:18,989 ERROR: Error taking screenshot: screen grab failed
-2024-06-03 12:13:18,989 INFO: Main loop running
-2024-06-03 12:13:22,145 INFO: ML is_authenticated: False, is_connected: False
-2024-06-03 12:13:22,146 INFO: Taking screenshot
-2024-06-03 12:13:22,156 ERROR: Error taking screenshot: screen grab failed
-2024-06-03 12:13:22,156 INFO: Main loop running
-2024-06-03 12:13:24,292 INFO: Stopping service -------------------------------------------------
+2024-06-03 18:52:17,948 INFO: Service security set
+2024-06-03 18:52:17,948 INFO: Starting service
+2024-06-03 18:52:17,963 INFO: Starting main loop
+2024-06-03 18:52:17,964 INFO: ServerAPI initialized
+2024-06-03 18:52:17,964 INFO: ML is_authenticated: False, is_connected: False
+2024-06-03 18:52:17,964 INFO: check connection
+2024-06-03 18:52:17,964 INFO: Connecting to server...
+2024-06-03 18:52:18,234 INFO: Connected to server, response: pong
+2024-06-03 18:52:18,235 INFO: Agent id: a3861f
+2024-06-03 18:52:18,283 INFO: Login successful
+2024-06-03 18:52:18,284 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:18,284 INFO: Sharing screen
+2024-06-03 18:52:18,298 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:18,299 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:18,300 INFO: Main loop running
+2024-06-03 18:52:21,314 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:21,314 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:21,314 INFO: Sharing screen
+2024-06-03 18:52:21,319 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:21,320 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:21,320 INFO: Main loop running
+2024-06-03 18:52:24,429 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:24,429 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:24,429 INFO: Sharing screen
+2024-06-03 18:52:24,436 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:24,436 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:24,436 INFO: Main loop running
+2024-06-03 18:52:27,525 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:27,525 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:27,526 INFO: Sharing screen
+2024-06-03 18:52:27,543 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:27,544 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:27,544 INFO: Main loop running
+2024-06-03 18:52:30,557 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:30,557 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:30,557 INFO: Sharing screen
+2024-06-03 18:52:30,563 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:30,564 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:30,564 INFO: Main loop running
+2024-06-03 18:52:33,579 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:33,579 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:33,579 INFO: Sharing screen
+2024-06-03 18:52:33,585 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:33,587 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:33,588 INFO: Main loop running
+2024-06-03 18:52:36,594 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:36,594 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:36,594 INFO: Sharing screen
+2024-06-03 18:52:36,602 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:36,602 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:36,602 INFO: Main loop running
+2024-06-03 18:52:39,614 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:39,614 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:39,614 INFO: Sharing screen
+2024-06-03 18:52:39,620 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:39,620 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:39,620 INFO: Main loop running
+2024-06-03 18:52:42,631 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:42,631 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:42,631 INFO: Sharing screen
+2024-06-03 18:52:42,638 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:42,639 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:42,639 INFO: Main loop running
+2024-06-03 18:52:45,647 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:45,647 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:45,647 INFO: Sharing screen
+2024-06-03 18:52:45,659 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:45,659 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:45,659 INFO: Main loop running
+2024-06-03 18:52:48,662 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:48,662 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:48,662 INFO: Sharing screen
+2024-06-03 18:52:48,669 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:48,670 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:48,670 INFO: Main loop running
+2024-06-03 18:52:51,673 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:51,674 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:51,674 INFO: Sharing screen
+2024-06-03 18:52:51,680 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:51,680 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:51,680 INFO: Main loop running
+2024-06-03 18:52:54,685 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:54,686 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:54,686 INFO: Sharing screen
+2024-06-03 18:52:54,694 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:54,695 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:54,695 INFO: Main loop running
+2024-06-03 18:52:57,702 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:52:57,702 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:57,702 INFO: Sharing screen
+2024-06-03 18:52:57,707 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:52:57,707 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:52:57,708 INFO: Main loop running
+2024-06-03 18:53:00,715 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:00,716 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:00,716 INFO: Sharing screen
+2024-06-03 18:53:00,721 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:53:00,722 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:00,722 INFO: Main loop running
+2024-06-03 18:53:03,736 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:03,736 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:03,736 INFO: Sharing screen
+2024-06-03 18:53:03,795 INFO: Sending screen shot to server
+2024-06-03 18:53:04,228 INFO: Screen shared
+2024-06-03 18:53:04,229 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:04,229 INFO: Main loop running
+2024-06-03 18:53:07,244 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:07,244 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:07,244 INFO: Sharing screen
+2024-06-03 18:53:07,308 INFO: Sending screen shot to server
+2024-06-03 18:53:07,833 INFO: Screen shared
+2024-06-03 18:53:07,833 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:07,834 INFO: Main loop running
+2024-06-03 18:53:10,843 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:10,843 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:10,843 INFO: Sharing screen
+2024-06-03 18:53:10,899 INFO: Sending screen shot to server
+2024-06-03 18:53:11,267 INFO: Screen shared
+2024-06-03 18:53:11,267 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:11,267 INFO: Main loop running
+2024-06-03 18:53:14,280 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:14,280 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:14,280 INFO: Sharing screen
+2024-06-03 18:53:14,322 INFO: Sending screen shot to server
+2024-06-03 18:53:15,015 INFO: Screen shared
+2024-06-03 18:53:15,015 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:15,015 INFO: Main loop running
+2024-06-03 18:53:18,021 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:18,021 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:18,021 INFO: Sharing screen
+2024-06-03 18:53:18,032 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:53:18,033 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:18,033 INFO: Main loop running
+2024-06-03 18:53:21,049 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:21,049 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:21,049 INFO: Sharing screen
+2024-06-03 18:53:21,138 INFO: Sending screen shot to server
+2024-06-03 18:53:21,541 INFO: Screen shared
+2024-06-03 18:53:21,541 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:21,541 INFO: Main loop running
+2024-06-03 18:53:24,556 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:24,556 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:24,557 INFO: Sharing screen
+2024-06-03 18:53:24,563 ERROR: Error sharing screen: image file is truncated
+2024-06-03 18:53:24,564 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:24,564 INFO: Main loop running
+2024-06-03 18:53:27,568 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:27,568 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:27,568 INFO: Sharing screen
+2024-06-03 18:53:27,611 INFO: Sending screen shot to server
+2024-06-03 18:53:27,899 INFO: Screen shared
+2024-06-03 18:53:27,899 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:27,899 INFO: Main loop running
+2024-06-03 18:53:30,907 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:30,907 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:30,907 INFO: Sharing screen
+2024-06-03 18:53:30,950 INFO: Sending screen shot to server
+2024-06-03 18:53:31,226 INFO: Screen shared
+2024-06-03 18:53:31,226 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:31,227 INFO: Main loop running
+2024-06-03 18:53:34,234 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:34,234 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:34,234 INFO: Sharing screen
+2024-06-03 18:53:34,294 INFO: Sending screen shot to server
+2024-06-03 18:53:34,640 INFO: Screen shared
+2024-06-03 18:53:34,640 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:34,640 INFO: Main loop running
+2024-06-03 18:53:37,653 INFO: ML is_authenticated: True, is_connected: True
+2024-06-03 18:53:37,653 INFO: before serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:37,653 INFO: Sharing screen
+2024-06-03 18:53:37,695 INFO: Sending screen shot to server
+2024-06-03 18:53:37,994 INFO: Screen shared
+2024-06-03 18:53:37,995 INFO: after serverapi status: is_connected: True, is_authenticated: True
+2024-06-03 18:53:37,995 INFO: Main loop running
+2024-06-03 18:53:38,798 INFO: Stopping service -------------------------------------------------
 

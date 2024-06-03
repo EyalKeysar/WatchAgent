@@ -4,6 +4,8 @@ from PIL import ImageGrab
 import logging
 import time
 
+TIME_INTERVAL = 0.3
+
 def take_screenshot():
     try:
         screenshot = ImageGrab.grab()
@@ -12,8 +14,13 @@ def take_screenshot():
         logging.error("Error taking screenshot: %s", e)
 
 if __name__ == "__main__":
-    # use logging to log the start
+    logging.basicConfig(filename=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'take_screenshot.log'), level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
+    logging.info("Starting take_screenshot")
     while True:
         logging.basicConfig(filename=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'take_screenshot.log'), level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
-        take_screenshot()
-        time.sleep(0.1)
+        try:
+            take_screenshot()
+        except Exception as e:
+            logging.error("Error taking screenshot: %s", e)
+
+        time.sleep(TIME_INTERVAL)

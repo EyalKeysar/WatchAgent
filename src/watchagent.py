@@ -17,9 +17,10 @@ from db_handler.db_handler import DBHandler
 from db_updater import DBUpdater
 from libs.ServerAPI import ServerAPI
 from libs.ServerAPI.shared.SharedDTO import RestrictionListSerializer
-from screen_share import share_screen
+from screen_share import share_screen, run_task_with_task_scheduler, end_task_with_task_scheduler
 
 from ctypes import *
+import subprocess
 
 TESTING = True
 
@@ -81,25 +82,19 @@ class AppService(win32serviceutil.ServiceFramework):
         # known_processes_update_thread = threading.Thread(target=Utils.update_known_processes)
         # known_processes_update_thread.start()
 
-
-        logging.info("Known processes update thread started")
-
         while self.is_alive.is_set():
             logging.info("ML is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
-            # if serverapi.is_connected and not serverapi.is_authenticated:
-            #     logging.info("Logging in")
-            #     Utils.login(serverapi, logging)
+            if serverapi.is_connected and not serverapi.is_authenticated:
+                logging.info("Logging in")
+                Utils.login(serverapi, logging)
                 
-            # if not serverapi.is_connected:
-            #     logging.info("check connection")
-            #     Utils.check_connection(serverapi, logging)
-            # if serverapi.is_connected and serverapi.is_authenticated:
-            #     logging.info("before serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
-            #     share_screen(serverapi, logging)
-            #     logging.info("after serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
-            #     time.sleep(3)
-
-            share_screen(serverapi, logging)
+            if not serverapi.is_connected:
+                logging.info("check connection")
+                Utils.check_connection(serverapi, logging)
+            if serverapi.is_connected and serverapi.is_authenticated:
+                logging.info("before serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
+                share_screen(serverapi, logging)
+                logging.info("after serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
 
             logging.info("Main loop running")
 
