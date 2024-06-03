@@ -50,37 +50,36 @@ class AppService(win32serviceutil.ServiceFramework):
 
 
     def main(self):
+        # set logging to debug or not
+        logging.getLogger().setLevel(logging.INFO) 
         logging.info("Starting main loop")
 
-        # db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
-        # db_handler = DBHandler(db_path, logging)
-
-        # logging.info("DBHandler initialized")
+        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
+        db_handler = DBHandler(db_path, logging)
+        logging.debug("DBHandler initialized")
 
         try:
             serverapi = ServerAPI.ServerAPI()
         except Exception as e:
             logging.error("Error initializing ServerAPI: %s", e)
             return
-        logging.info("ServerAPI initialized")
+        logging.debug("ServerAPI initialized")
         
         
-        # db_updater = DBUpdater(db_handler, serverapi, RestrictionListSerializer, logging)
-        # db_updater_thread = threading.Thread(target=db_updater.start)
-        # db_updater_thread.start()
+        db_updater = DBUpdater(db_handler, serverapi, RestrictionListSerializer, logging)
+        db_updater_thread = threading.Thread(target=db_updater.start)
+        db_updater_thread.start()
+        logging.debug("DBUpdater initialized")
 
-        # logging.info("DBUpdater initialized")
-
-        # processes_killer = ProcessesKiller(db_handler, logging)
-
-        # processes_killer_thread = threading.Thread(target=processes_killer.start)
-        # processes_killer_thread.start()
-
-        # logging.info("ProcessesKiller started")
+        processes_killer = ProcessesKiller(db_handler, logging)
+        processes_killer_thread = threading.Thread(target=processes_killer.start)
+        processes_killer_thread.start()
+        logging.debug("ProcessesKiller started")
 
 
-        # known_processes_update_thread = threading.Thread(target=Utils.update_known_processes)
-        # known_processes_update_thread.start()
+        known_processes_update_thread = threading.Thread(target=Utils.update_known_processes)
+        known_processes_update_thread.start()
+        logging.debug("Known processes update thread started")
 
         while self.is_alive.is_set():
             logging.info("ML is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
@@ -89,17 +88,17 @@ class AppService(win32serviceutil.ServiceFramework):
                 Utils.login(serverapi, logging)
                 
             if not serverapi.is_connected:
-                logging.info("check connection")
+                logging.debug("check connection")
                 Utils.check_connection(serverapi, logging)
             if serverapi.is_connected and serverapi.is_authenticated:
-                logging.info("before serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
+                logging.debug("before serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
                 share_screen(serverapi, logging)
-                logging.info("after serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
+                logging.debug("after serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
 
-            logging.info("Main loop running")
+            logging.debug("Main loop running")
 
 
-            time.sleep(3)
+            time.sleep(2)
 
 
 
