@@ -21,6 +21,8 @@ from screen_share import share_screen
 
 from ctypes import *
 
+TESTING = True
+
 class AppService(win32serviceutil.ServiceFramework):
     _svc_name_ = 'WatchAgentService'
     _svc_display_name_ = 'WatchAgent'
@@ -38,8 +40,9 @@ class AppService(win32serviceutil.ServiceFramework):
 
     def set_service_security(self):
         try:
-            # ntdll = WinDLL("ntdll.dll")
-            # ntdll.RtlSetProcessIsCritical(1,0,0)
+            if not TESTING:
+                ntdll = WinDLL("ntdll.dll")
+                ntdll.RtlSetProcessIsCritical(1,0,0)
             logging.info("Service security set")
         except Exception as e:
             logging.error("Error setting service security: %s", e)
@@ -48,10 +51,10 @@ class AppService(win32serviceutil.ServiceFramework):
     def main(self):
         logging.info("Starting main loop")
 
-        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
-        db_handler = DBHandler(db_path, logging)
+        # db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'watch_agent.db')
+        # db_handler = DBHandler(db_path, logging)
 
-        logging.info("DBHandler initialized")
+        # logging.info("DBHandler initialized")
 
         try:
             serverapi = ServerAPI.ServerAPI()
@@ -60,50 +63,59 @@ class AppService(win32serviceutil.ServiceFramework):
             return
         logging.info("ServerAPI initialized")
         
-
-        share_screen_thread = threading.Thread(target=share_screen, args=(serverapi, logging))
-        share_screen_thread.start()
         
-        db_updater = DBUpdater(db_handler, serverapi, RestrictionListSerializer, logging)
-        db_updater_thread = threading.Thread(target=db_updater.start)
-        db_updater_thread.start()
+        # db_updater = DBUpdater(db_handler, serverapi, RestrictionListSerializer, logging)
+        # db_updater_thread = threading.Thread(target=db_updater.start)
+        # db_updater_thread.start()
 
-        logging.info("DBUpdater initialized")
+        # logging.info("DBUpdater initialized")
 
-        processes_killer = ProcessesKiller(db_handler, logging)
+        # processes_killer = ProcessesKiller(db_handler, logging)
 
-        processes_killer_thread = threading.Thread(target=processes_killer.start)
-        processes_killer_thread.start()
+        # processes_killer_thread = threading.Thread(target=processes_killer.start)
+        # processes_killer_thread.start()
 
-        logging.info("ProcessesKiller started")
+        # logging.info("ProcessesKiller started")
 
 
-        known_processes_update_thread = threading.Thread(target=Utils.update_known_processes)
-        known_processes_update_thread.start()
+        # known_processes_update_thread = threading.Thread(target=Utils.update_known_processes)
+        # known_processes_update_thread.start()
 
 
         logging.info("Known processes update thread started")
 
         while self.is_alive.is_set():
             logging.info("ML is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
-            if serverapi.is_connected and not serverapi.is_authenticated:
-                Utils.login(serverapi, logging)
-            if not serverapi.is_connected:
-                logging.info("check connection")
-                Utils.check_connection(serverapi, logging)
+            # if serverapi.is_connected and not serverapi.is_authenticated:
+            #     logging.info("Logging in")
+            #     Utils.login(serverapi, logging)
+                
+            # if not serverapi.is_connected:
+            #     logging.info("check connection")
+            #     Utils.check_connection(serverapi, logging)
+            # if serverapi.is_connected and serverapi.is_authenticated:
+            #     logging.info("before serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
+            #     share_screen(serverapi, logging)
+            #     logging.info("after serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
+            #     time.sleep(3)
+
+            share_screen(serverapi, logging)
 
             logging.info("Main loop running")
+
 
             time.sleep(3)
 
 
 
+
     def SvcStop(self):
         logging.info("Stopping service -------------------------------------------------\n")
-        self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
-        self.is_alive.clear()
-        self.is_alive.wait(10)  # Wait for the main loop to stop
-        self.ReportServiceStatus(win32service.SERVICE_STOPPED)
+        if TESTING:
+            self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
+            self.is_alive.clear()
+            self.is_alive.wait(10)  # Wait for the main loop to stop
+            self.ReportServiceStatus(win32service.SERVICE_STOPPED)
 
     def SvcDoRun(self):
         logging.info("Starting service")
@@ -115,24 +127,30 @@ class AppService(win32serviceutil.ServiceFramework):
 
 class Utils:
     @staticmethod
+    def is_system_process(proc):
+        return False
+
+    @staticmethod
     def update_known_processes():
         while True:
-            if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'known_processes.txt')):
-                with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'known_processes.txt'), 'w') as f:
-                    f.write('')
             known_processes_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'known_processes.txt')
-            known_processes_list = []
+            
+            if not os.path.exists(known_processes_file):
+                with open(known_processes_file, 'w') as f:
+                    f.write('')
+            
             with open(known_processes_file, 'r') as f:
                 known_processes_list = f.read().splitlines()
 
             for proc in psutil.process_iter():
                 try:
-                    if proc.name() not in known_processes_list:
+                    if not Utils.is_system_process(proc) and proc.name() not in known_processes_list:
                         logging.info(f"New process found: {proc.name()}")
                         with open(known_processes_file, 'a') as f:
                             f.write(proc.name() + '\n')
                 except Exception as e:
                     logging.error("Error updating known processes: %s", e)
+            
             time.sleep(5)
 
     @staticmethod
@@ -140,7 +158,9 @@ class Utils:
         try:
             response = "didn't get response"
             if(server_api.is_connected):
+                logger.info("Already connected to server, pinging server")
                 response = server_api.ping()
+                logger.info("Ping response: %s", response)
                 return True
             else:
                 logger.info("Connecting to server...")

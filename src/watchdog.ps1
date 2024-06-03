@@ -16,5 +16,5 @@ function CheckAndSetStartupType {
 while ($true) {
     CheckAndSetStartupType
     Write-Host "Sleeping for 2 seconds..."
-    Start-Sleep -Seconds 2  # Check every 30 seconds
+    Start-Sleep -Seconds 2
 }

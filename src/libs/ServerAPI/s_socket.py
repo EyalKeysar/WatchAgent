@@ -43,8 +43,6 @@ class AESCipher:
         plaintext = unpad(cipher.decrypt(ciphertext[self.block_size:]), self.block_size)
         return plaintext.decode()
 
-
-
 # TLSProtocol
 class TLSProtocol:
     def __init__(self, socket):
@@ -123,6 +121,7 @@ class TLSProtocol:
         if self.aes_cipher is None:
             raise Exception("AES cipher is not initialized.")
         encrypted_data = self.aes_cipher.encrypt(data)
+        print("encrypted data: ", encrypted_data[:100])
 
         send(self.socket,encrypted_data)
 
@@ -135,7 +134,7 @@ class TLSProtocol:
         decrypted_data = self.aes_cipher.decrypt(encrypted_data)
         return decrypted_data
 
-LENGTH_PREFIX_SIZE = 4
+LENGTH_PREFIX_SIZE = 10
 
 def add_length_prefix(data):
     length = len(data)
@@ -148,6 +147,7 @@ def send(socket, data):
 def receive(socket):
     length_prefix = socket.recv(LENGTH_PREFIX_SIZE)
     length = int.from_bytes(length_prefix, byteorder='big')
+    print("length: ", length)
     return socket.recv(length)
 
 def close(socket):

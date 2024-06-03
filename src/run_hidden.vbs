@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "C:\Users\dvir\AppData\Local\Programs\Python\Python39\python.exe C:\Dev\WatchAgent\src\take_screenshot.py", 0, True
