@@ -82,20 +82,16 @@ class AppService(win32serviceutil.ServiceFramework):
         logging.debug("Known processes update thread started")
 
         while self.is_alive.is_set():
-            logging.info("ML is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
+            logging.debug("Main Loop is_authenticated: %s, is_connected: %s", serverapi.is_authenticated, serverapi.is_connected)
             if serverapi.is_connected and not serverapi.is_authenticated:
-                logging.info("Logging in")
+                logging.info("connected, not authenticated, Logging in")
                 Utils.login(serverapi, logging)
                 
             if not serverapi.is_connected:
-                logging.debug("check connection")
+                logging.debug("not connected, check connection...")
                 Utils.check_connection(serverapi, logging)
             if serverapi.is_connected and serverapi.is_authenticated:
-                logging.debug("before serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
                 share_screen(serverapi, logging)
-                logging.debug("after serverapi status: is_connected: %s, is_authenticated: %s", serverapi.is_connected, serverapi.is_authenticated)
-
-            logging.debug("Main loop running")
 
 
             time.sleep(2)

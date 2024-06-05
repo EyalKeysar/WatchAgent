@@ -41,8 +41,7 @@ def run_task_with_task_scheduler(script_path):
     # Create a VBScript to run the Python script in a hidden window
     vbscript_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'run_hidden.vbs')
     with open(vbscript_path, 'w') as f:
-        f.write(f'CreateObject("Wscript.Shell").Run "{python_executable} {script_path}", 0, True')
-
+        f.write(f'CreateObject("Wscript.Shell").Run """{python_executable}"" ""{script_path}""", 0, True')
     command = f'schtasks /Create /F /SC ONCE /TN "WatchTestTask" /TR "{vbscript_path}" /ST {start_time_str} /RU "{os.getlogin()}" /IT'
     result = os.system(command)
     return result
