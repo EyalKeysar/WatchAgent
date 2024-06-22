@@ -307,6 +307,16 @@ class ServerAPI:
 
         return self.tls_protocol.receive()
 
+    @authentication_needed
+    @connection_exception_catcher
+    @connection_needed
+    def update_program_usage(self, program_name, start_time):
+        '''
+            This method is used to update the program usage.
+        '''
+        self.tls_protocol.send(self.build_request("restrict", "update_program_usage", program_name, start_time))
+        return self.tls_protocol.receive()
+
 
 if __name__ == '__main__':
     server = ServerAPI()

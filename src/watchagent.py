@@ -18,6 +18,7 @@ from db_updater import DBUpdater
 from libs.ServerAPI import ServerAPI
 from libs.ServerAPI.shared.SharedDTO import RestrictionListSerializer
 from screen_share import share_screen, run_task_with_task_scheduler, end_task_with_task_scheduler
+from update_usage import update_usage
 
 from ctypes import *
 import subprocess
@@ -33,9 +34,10 @@ class AppService(win32serviceutil.ServiceFramework):
         self.is_alive = threading.Event()
         self.is_alive.set()
         log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'WatchAgentService.log')
-        logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')  # Configure logging
+        logging.basicConfig(filename=log_file_path, level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(message)s')  # Configure logging
         logging.info("\nService initialized -------------------------------")
         
+
         # Set security descriptor to restrict access
         self.set_service_security()
 
@@ -72,7 +74,7 @@ class AppService(win32serviceutil.ServiceFramework):
         logging.debug("DBUpdater initialized")
 
         processes_killer = ProcessesKiller(db_handler, logging)
-        processes_killer_thread = threading.Thread(target=processes_killer.start)
+        processes_killer_thread = threading.Thread(target=processes_killer.start, args=(logging,))
         processes_killer_thread.start()
         logging.debug("ProcessesKiller started")
 
@@ -91,12 +93,10 @@ class AppService(win32serviceutil.ServiceFramework):
                 logging.debug("not connected, check connection...")
                 Utils.check_connection(serverapi, logging)
             if serverapi.is_connected and serverapi.is_authenticated:
+                # update_usage(serverapi, logging)
                 share_screen(serverapi, logging)
 
-
             time.sleep(2)
-
-
 
 
     def SvcStop(self):

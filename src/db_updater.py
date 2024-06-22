@@ -35,6 +35,9 @@ class DBUpdater:
             self.logger.error("Error updating known processes to server: %s", e)
 
     def get_known_processes(self):
+        """
+        Get the list of known processes from the known_processes.txt file
+        """
         try:
             known_processes_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'known_processes.txt')
             known_processes_list = []
